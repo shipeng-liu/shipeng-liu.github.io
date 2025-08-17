@@ -496,6 +496,13 @@ main {
 
  */
 
+
+
+/* Logo styling with rounded corners */
+.rounded-logo {
+  border-radius: 8px;
+}
+
 .contact-link {
   display: inline-flex;
   align-items: center;
@@ -521,6 +528,16 @@ main {
   height: 30px;
   display: block;
   filter: invert(70%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(90%) contrast(90%);
+}
+
+.contact-icon {
+  font-size: 24px;
+  color: var(--usc-red);
+  transition: color var(--transition-1);
+}
+
+.contact-link:hover .contact-icon {
+  color: var(--usc-gold);
 }
 
 
@@ -2179,8 +2196,9 @@ textarea.form-input::-webkit-resizer {
 
 .research-item {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 20px;
+  align-items: flex-start;
 }
 
 .research-info {
@@ -2188,6 +2206,7 @@ textarea.form-input::-webkit-resizer {
   min-width: 0;
   word-wrap: break-word;
   overflow-wrap: anywhere;
+  max-width: calc(100% - 340px);
 }
 
 
@@ -2219,20 +2238,32 @@ textarea.form-input::-webkit-resizer {
 }
 
 .research-video-preview {
-  width: 200px;
-  height: 140px;
-  border-radius: 4px;
+  width: 320px;
+  height: auto;
+  border-radius: 8px;
   overflow: hidden;
   flex-shrink: 0;
   position: relative;
+  aspect-ratio: auto;
 }
 
 .research-video-preview video {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 4px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
   display: block;
+}
+
+/* Specific styling for adaptive locomotion video (second research item) */
+.research-item:nth-child(2) .research-video-preview {
+  height: auto;
+  aspect-ratio: auto;
+}
+
+.research-item:nth-child(2) .research-video-preview video {
+  height: auto;
+  object-fit: contain;
 }
 
 rose {
@@ -2274,6 +2305,14 @@ rose {
   /* 👈 tighter spacing */
   margin: 0 0 4px;
   /* optional: adjust margin too */
+}
+
+.journal-name {
+  font-size: 0.75rem;
+  color: var(--usc-red);
+  font-style: italic;
+  margin: 0 0 6px;
+  opacity: 0.9;
 }
 
 .research-tags {

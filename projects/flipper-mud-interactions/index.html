@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flipper-Mud Interactions - Shipeng (Henry) Liu</title>
+  <link rel="shortcut icon" href="../../assets/images/icon-rounded.png">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --usc-red: #990000;
+      --usc-gold: #FFCC00;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .project-header {
+      background: linear-gradient(135deg, var(--usc-red) 0%, var(--usc-gold) 100%);
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .project-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.3s;
+      margin-bottom: 2rem;
+    }
+
+    .back-link:hover {
+      opacity: 0.8;
+    }
+
+    .back-link ion-icon {
+      margin-right: 0.5rem;
+    }
+
+    .authors-section {
+      margin: 2rem 0;
+    }
+
+    .authors-names {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: white;
+    }
+
+    .authors-affiliations {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      margin-bottom: 0.3rem;
+      color: white;
+      font-style: italic;
+    }
+
+    .conference-label {
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    .conference-label p {
+      font-size: 1.1rem;
+      color: var(--usc-red);
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .content-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section {
+      margin-bottom: 4rem;
+    }
+
+    .section h2 {
+      color: var(--usc-red);
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 3px solid var(--usc-gold);
+      padding-bottom: 0.5rem;
+    }
+
+    .section h3 {
+      color: var(--usc-red);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      margin-top: 2rem;
+    }
+
+    .highlight-box {
+      background: white;
+      border-left: 4px solid var(--usc-red);
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .highlight-box strong {
+      color: var(--usc-red);
+    }
+
+    .image-container {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .image-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .image-container img:not([src*="data:"]):not([src*="http"]):not([src*="https"]) {
+      min-height: 300px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed #dee2e6;
+      color: #6c757d;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .image-container img:not([src*="data:"]):not([src*="http"]):not([src*="https"])::before {
+      content: "Image: " attr(alt);
+      display: block;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+
+    .image-container i {
+      display: block;
+      margin-top: 1rem;
+      font-style: italic;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .video-container {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .video-container video {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .video-container p {
+      margin-top: 1rem;
+      font-style: italic;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .methodology-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .methodology-card {
+      background: white;
+      border: 2px solid var(--usc-gold);
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .methodology-card h4 {
+      color: var(--usc-red);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .methodology-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .methodology-card li {
+      padding: 0.3rem 0;
+      font-size: 0.9rem;
+    }
+
+    .methodology-card li:before {
+      content: "→";
+      color: var(--usc-gold);
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .result-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .result-card h4 {
+      color: var(--usc-red);
+      margin-bottom: 1rem;
+    }
+
+    .video-placeholder {
+      background: white;
+      padding: 4rem 2rem;
+      text-align: center;
+      color: #666;
+      border: 2px dashed #dee2e6;
+    }
+
+    /* Grid layouts for robot design section */
+    .robot-design-top-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .robot-design-bottom-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    /* Grid layouts for results section */
+    .results-videos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    /* Grid layouts for additional experiments section */
+    .unsupported-videos-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .unsupported-images-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    /* Validation grid */
+    .validation-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    /* Force analysis grid */
+    .force-analysis-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .force-analysis-grid .image-container {
+      margin: 1rem 0;
+    }
+
+    .force-analysis-grid .image-container i {
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+
+    /* Demo video container */
+    .demo-video-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .demo-video-container video {
+      height: auto !important;
+      max-height: 600px;
+      object-fit: contain;
+    }
+
+    @media (max-width: 768px) {
+      .project-header h1 {
+        font-size: 2rem;
+      }
+      
+      .content-section {
+        padding: 0 1rem;
+      }
+      
+      .methodology-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Project Header -->
+  <header class="project-header">
+    <a href="../../index.html" class="back-link">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+      Back to Main Site
+    </a>
+    <h1>Adaptation of Flipper-Mud Interactions Enables Effective Terrestrial Locomotion on Muddy Substrates</h1>
+    
+    <!-- Conference Label -->
+    <div class="conference-label">
+      <p><em>IEEE International Conference on Robotics and Automation (ICRA), 2025</em></p>
+    </div>
+    
+    <!-- Authors Section -->
+    <div class="authors-section">
+      <p class="authors-names">SHIPENG LIU<sup>1</sup>, BOYUAN HUANG<sup>1</sup>, FEIFEI QIAN<sup>1</sup>∗</p>
+      <p class="authors-affiliations"><sup>1</sup>Department of Electrical and Computer Engineering, University of Southern California, Los Angeles, California, USA</p>
+    </div>
+  </header>
+
+  <div class="content-section">
+    
+    <!-- Project Links Section -->
+    <section class="section" style="margin-bottom: 2rem;">
+      <div style="text-align: center; margin: 2rem 0;">
+        <a href="https://github.com/QianLabUSC/flipper-mud-interactions" class="research-link" target="_blank" style="display: inline-flex; align-items: center; padding: 0.8rem 1.5rem; background: var(--usc-red); color: white; text-decoration: none; border-radius: 8px; font-weight: 500; transition: background-color 0.3s; margin: 0 0.5rem;">
+          <ion-icon name="logo-github" style="margin-right: 0.5rem; font-size: 1.1rem;"></ion-icon>
+          Code
+        </a>
+        <a href="https://arxiv.org/pdf/2401.12346" class="research-link" target="_blank" style="display: inline-flex; align-items: center; padding: 0.8rem 1.5rem; background: var(--usc-gold); color: white; text-decoration: none; border-radius: 8px; font-weight: 500; transition: background-color 0.3s; margin: 0 0.5rem;">
+          <ion-icon name="document-outline" style="margin-right: 0.5rem; font-size: 1.1rem;"></ion-icon>
+          Arxiv
+        </a>
+        <a href="https://arxiv.org/pdf/2401.12346" class="research-link" target="_blank" style="display: inline-flex; align-items: center; padding: 0.8rem 1.5rem; background: #6c757d; color: white; text-decoration: none; border-radius: 8px; font-weight: 500; transition: background-color 0.3s; margin: 0 0.5rem;">
+          <ion-icon name="document-outline" style="margin-right: 0.5rem; font-size: 1.1rem;"></ion-icon>
+          PDF
+        </a>
+      </div>
+    </section>
+    
+    <!-- Introduction Section -->
+    <section class="section">
+      <h2>Introduction</h2>
+      
+             <div class="highlight-box">
+         <strong>Moving on natural muddy terrains is complex and challenging.</strong> We study the terrestrial locomotion of a mudskipper-inspired robot on synthetic mud to understand how mud properties affect robot performance.
+       </div>
+
+       <div class="image-container" style="text-align: center;">
+         <img src="./assets/motivation.png" alt="Motivation showing challenges of muddy terrain locomotion">
+         <i>Motivation: Challenges of terrestrial locomotion on varying muddy substrates</i>
+       </div>
+
+       <p>We observed a non-monotonic dependence of robot speed on mud water content, with optimal performance at intermediate levels. This reveals the complex nature of mud-robot interactions and the need for adaptive strategies.</p>
+    </section>
+
+    <!-- Robot Design Section -->
+    <section class="section">
+      <h2>Robot Design</h2>
+      
+      <p>We designed a mudskipper-inspired robot specifically for studying terrestrial locomotion on muddy substrates. The robot features flippers that can interact with the substrate to gather data about mud properties and locomotion performance.</p>
+
+             <div class="image-container" style="text-align: center;">
+         <img src="./assets/robotdesign.png" alt="Robot design showing the mudskipper-inspired mechanism" style="width: 65%; display: block; margin: 0 auto;">
+         <i>Robot design showing the mudskipper-inspired mechanism</i>
+       </div>
+    </section>
+
+    <!-- Experiment Section -->
+    <section class="section">
+      <h2>Experiment</h2>
+      
+      <p>We conducted systematic experiments to understand the relationship between mud water content and robot locomotion performance, revealing a non-monotonic dependence that led to the identification of two distinct failure mechanisms.</p>
+
+      <h3>Robot Speed Versus Mud Water Content</h3>
+      <p>The robot's average speed in the forward direction exhibited a non-monotonic dependence on the mud water content. The robot achieved its highest speed at intermediate water content levels, with performance rapidly declining when the water content was either too high or too low. Even small variations in water content of just a few percent led to significant performance degradation.</p>
+
+             <div class="image-container" style="text-align: center;">
+         <img src="./assets/experiments.png" alt="Averaged robot forward speed versus mud water content" style="width: 65%; display: block; margin: 0 auto;">
+         <i>Averaged robot forward speed versus mud water content. Blue, red, and green markers represent robot speed averaged from the entire trial, the last four steps, and the first four steps, respectively. Error bars represent the standard deviation of the averaged speed from three trials. <strong>Two distinct failure modes identified: flipper entrapment at low water content (causing backward displacement) and large slippage at high water content (reducing forward displacement).</strong></i>
+       </div>
+
+      <p>Interestingly, for both failing regions, the robot could often move forward relatively effectively during the first few steps (green markers). However, tracking data indicated that the robot step length decreased rapidly to close to 0 within the first 10 seconds for both high water content and low water content conditions.</p>
+
+             
+    </section>    <!-- Results Section -->
+    <section class="section">
+      <h2>Results</h2>
+      
+
+             <div class="image-container" style="text-align: center;">
+         <img src="./assets/horizontalforce.png" alt="Experimentally measured averaged shear force" style="display: block; margin: 0 auto;">
+         <i>Experimentally measured averaged shear force on one flipper dragged through different water content. 3 trials were plotted for each water content. For each trial, the force signals from the last 4cm of the shear distance were averaged to obtain the steady-state shear force. <strong>The results reveal that at high water content, reduced mud shear strength leads to large slippage and reduced step length, causing locomotion failure. Our adaptation strategies increased robot speed by more than 200%.</strong></i>
+       </div>
+
+               <div class="image-container" style="text-align: center;">
+          <img src="./assets/verticalforce.png" alt="Model-predicted mechanism behind the locomotion failure on low water content mud mixtures" style="display: block; margin: 0 auto;">
+          <i>Model-predicted mechanism behind the locomotion failure on low water content mud mixtures. The analysis reveals that at low water content, increased mud suction force causes flipper entrapment during extraction, leading to backward displacement and locomotion failure. The entrapment depth increases with decreasing water content, making it impossible for the robot to extract its flippers effectively.</i>
+        </div>
+     </section>
+
+     <!-- Adaptive Locomotion Section -->
+     <section class="section">
+       <h2>Adaptive Locomotion Strategy</h2>
+       
+       <p>Based on our comprehensive force model analysis, we developed adaptive locomotion strategies that enable the robot to effectively navigate varying mud conditions by adjusting its interaction patterns.</p>
+
+               <div class="image-container" style="text-align: center;">
+          <img src="./assets/adaptation.png" alt="Comparison of robot forward speed with and without adaptation" style="width: 65%; display: block; margin: 0 auto;">
+          <i>Comparison of robot forward speed (vx) under different conditions: without adaptation (w/o adaptation) and with adaptation (w/ adaptation) for mud water content levels W = 30% and W = 24.5%. The results demonstrate significant performance improvements when adaptation strategies are applied, with the highest speeds achieved at W = 24.5% with adaptation.</i>
+        </div>
+
+       <p>Our adaptation strategies successfully address both failure mechanisms identified in the force analysis. For high water content conditions, the robot adjusts its flipper interaction to minimize slippage. For low water content conditions, the robot modifies its extraction strategy to prevent entrapment. These adaptive approaches result in substantial performance improvements across all tested mud conditions.</p>
+     </section>
+
+     <!-- Demo Video Section -->
+     <section class="section">
+       <h2>Demo Video</h2>
+       
+               <div class="video-container demo-video-container">
+          <video src="https://www.dropbox.com/scl/fi/75xlq1v3if7yyyw6316oo/supplementary-video-edition-3.mp4?rlkey=mu5ivb5l6a4ce0qh26u182lpi&st=z951hqe1&dl=1" autoplay muted loop playsinline></video>
+          <p style="text-align: center; margin-top: 1rem; font-style: italic; color: #666;">
+            Demonstration of locomotion adaptation based on our force model.
+          </p>
+        </div>
+        <p>Our study represents a beginning step to extend robot mobility beyond simple substrates towards a wider range of complex, heterogeneous terrains. The insights gained from this work can inform the design of future robots for challenging natural environments.</p>
+    
+     </section>
+
+
+
+    <!-- Additional Experiments Section -->
+    
+
+  <!-- ionicon link -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>

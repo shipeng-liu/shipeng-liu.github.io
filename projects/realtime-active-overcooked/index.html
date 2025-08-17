@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Towards Real-time Adaptation of Embodied Agent - Shipeng (Henry) Liu</title>
+
+  <!-- favicon -->
+      <link rel="shortcut icon" href="../../assets/images/icon-rounded.png">
+
+  <!-- custom css link -->
+  <link rel="stylesheet" href="../../assets/css/style.css">
+
+  <!-- google font link -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+     <style>
+     body {
+       background: white !important;
+     }
+     
+     .project-header {
+       background: linear-gradient(135deg, var(--usc-red) 0%, var(--usc-gold) 100%);
+       color: white;
+       padding: 4rem 2rem;
+       text-align: center;
+       margin-bottom: 3rem;
+     }
+
+    .project-header h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+         .project-header .subtitle {
+       font-size: 1.2rem;
+       opacity: 0.9;
+       margin-bottom: 2rem;
+     }
+
+     .authors-section {
+       margin: 2rem 0;
+       text-align: center;
+     }
+
+     .authors-names {
+       font-size: 1.1rem;
+       font-weight: 500;
+       margin-bottom: 0.5rem;
+       color: white;
+     }
+
+     .authors-affiliations {
+       font-size: 0.9rem;
+       opacity: 0.9;
+       margin-bottom: 0.3rem;
+       color: white;
+       font-style: italic;
+     }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.3s;
+    }
+
+    .back-link:hover {
+      opacity: 0.8;
+    }
+
+    .back-link ion-icon {
+      margin-right: 0.5rem;
+    }
+
+         .content-section {
+       max-width: 1200px;
+       margin: 0 auto;
+       padding: 0 2rem;
+       background: white !important;
+     }
+
+    .section {
+      margin-bottom: 4rem;
+    }
+
+    .section h2 {
+      color: var(--usc-red);
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 3px solid var(--usc-gold);
+      padding-bottom: 0.5rem;
+    }
+
+    .section h3 {
+      color: var(--usc-red);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      margin-top: 2rem;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-left: 4px solid var(--usc-red);
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 8px;
+    }
+
+    .highlight-box strong {
+      color: var(--usc-red);
+    }
+
+         .image-container {
+       text-align: center;
+       margin: 2rem 0;
+       background: white !important;
+     }
+
+                   .image-container img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        object-fit: contain;
+      }
+
+             .image-container img:not([src*="data:"]):not([src*="http"]):not([src*="https"]) {
+         min-height: 300px;
+         background: white !important;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         border: 2px dashed #dee2e6;
+         color: #6c757d;
+         font-family: Arial, sans-serif;
+         font-size: 16px;
+         text-align: center;
+         padding: 2rem;
+         object-fit: contain;
+       }
+
+     .image-container img:not([src*="data:"]):not([src*="http"]):not([src*="https"])::before {
+       content: "Image: " attr(alt);
+       display: block;
+       margin-bottom: 1rem;
+       font-weight: bold;
+     }
+
+    .image-container i {
+      display: block;
+      margin-top: 1rem;
+      font-style: italic;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .agent-modes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+         .mode-card {
+       background: white !important;
+       border: 2px solid #e9ecef;
+       border-radius: 12px;
+       padding: 1.5rem;
+       transition: transform 0.3s, box-shadow 0.3s;
+     }
+
+    .mode-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+
+    .mode-card h4 {
+      color: var(--usc-red);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .mode-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .mode-card li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .mode-card li:last-child {
+      border-bottom: none;
+    }
+
+    .mode-card li:before {
+      content: "•";
+      color: var(--usc-gold);
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+         .principle-card {
+       background: white !important;
+       border: 2px solid var(--usc-gold);
+       border-radius: 12px;
+       padding: 1.5rem;
+       position: relative;
+     }
+
+    .principle-card h4 {
+      color: var(--usc-red);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .principle-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .principle-card li {
+      padding: 0.3rem 0;
+      font-size: 0.9rem;
+    }
+
+    .principle-card li:before {
+      content: "→";
+      color: var(--usc-gold);
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+
+         .video-grid {
+       display: flex;
+       flex-direction: column;
+       gap: 2rem;
+       margin: 2rem 0;
+     }
+     
+     .video-row {
+       display: grid;
+       grid-template-columns: 1fr 1fr;
+       gap: 2rem;
+       align-items: start;
+     }
+     
+     .video-row:last-child {
+       grid-template-columns: 1fr;
+       justify-items: center;
+     }
+     
+     .video-container {
+       position: relative;
+       width: 100%;
+       max-width: 500px;
+       border-radius: 12px;
+       overflow: hidden;
+       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+     }
+
+         .video-container video {
+       width: 100%;
+       height: auto;
+       display: block;
+       background: #000;
+       min-height: 200px;
+     }
+     
+     .video-container video::-webkit-media-controls {
+       display: none !important;
+     }
+
+    .video-placeholder {
+      background: #f8f9fa;
+      padding: 4rem 2rem;
+      text-align: center;
+      color: #666;
+      border: 2px dashed #dee2e6;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+         .result-card {
+       background: white !important;
+       border-radius: 12px;
+       padding: 1.5rem;
+       box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+     }
+
+    .result-card h4 {
+      color: var(--usc-red);
+      margin-bottom: 1rem;
+    }
+
+    .test-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+         .test-item {
+       background: white !important;
+       border-radius: 12px;
+       padding: 1.5rem;
+       box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+     }
+
+    .test-item h3 {
+      color: var(--usc-red);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    @media (max-width: 768px) {
+      .project-header h1 {
+        font-size: 2rem;
+      }
+      
+      .content-section {
+        padding: 0 1rem;
+      }
+      
+      .agent-modes,
+      .principles-grid,
+      .test-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Project Header -->
+  <header class="project-header">
+         <a href="../../index.html" class="back-link">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+      Back to Main Site
+    </a>
+              <h1>Towards Real-time Adaptation of Embodied Agent in Human-Robot Collaboration</h1>
+     
+           <!-- Authors Section -->
+      <div class="authors-section">
+        <p class="authors-names">SHIPENG LIU<sup>1,†,∗</sup>, BOSHEN ZHANG<sup>2,†</sup>, ZHEHUI HUANG<sup>2</sup></p>
+        <p class="authors-affiliations"><sup>1</sup>Department of Electrical and Computer Engineering, University of Southern California, USA</p>
+        <p class="authors-affiliations"><sup>2</sup>Thomas Lord Department of Computer Science, University of Southern California, USA</p>
+        <p class="authors-affiliations">†These authors contributed equally to this work</p>
+        <p class="authors-affiliations">∗Corresponding author: shipengl@usc.edu</p>
+      </div>
+   </header>
+
+   <div class="content-section">
+     
+     <!-- Project Links Section -->
+     <section class="section" style="margin-bottom: 2rem;">
+       <div style="text-align: center; margin: 2rem 0;">
+         <a href="https://github.com/QianLabUSC/LLM_realtime_collaboration" class="research-link" target="_blank" style="display: inline-flex; align-items: center; padding: 0.8rem 1.5rem; background: var(--usc-red); color: white; text-decoration: none; border-radius: 8px; font-weight: 500; transition: background-color 0.3s; margin: 0 0.5rem;">
+           <ion-icon name="logo-github" style="margin-right: 0.5rem; font-size: 1.1rem;"></ion-icon>
+           Code
+         </a>
+         <a href="https://arxiv.org/abs/2412.00435" class="research-link" target="_blank" style="display: inline-flex; align-items: center; padding: 0.8rem 1.5rem; background: var(--usc-gold); color: white; text-decoration: none; border-radius: 8px; font-weight: 500; transition: background-color 0.3s; margin: 0 0.5rem;">
+           <ion-icon name="document-outline" style="margin-right: 0.5rem; font-size: 1.1rem;"></ion-icon>
+           Arxiv
+         </a>
+         <a href="https://arxiv.org/pdf/2412.00435" class="research-link" target="_blank" style="display: inline-flex; align-items: center; padding: 0.8rem 1.5rem; background: #6c757d; color: white; text-decoration: none; border-radius: 8px; font-weight: 500; transition: background-color 0.3s; margin: 0 0.5rem;">
+           <ion-icon name="document-outline" style="margin-right: 0.5rem; font-size: 1.1rem;"></ion-icon>
+           PDF
+         </a>
+            </div>
+     </section>
+     
+     <!-- Introduction Section -->
+    <section class="section">
+      <h2>Introduction</h2>
+      
+      <div class="highlight-box">
+        <strong>Large Language Models (LLMs) have opened transformative possibilities for human-robot collaboration.</strong> However, enabling real-time collaboration requires both low latency and robust reasoning, and most LLMs suffer from large latency. We propose a fine-grained benchmark that assesses agents' proactive adaptability and temporal responsiveness explicitly, and develop MonTA (Monitor-then-Adapt) framework for real-time adaptation.
+      </div>
+
+      <p>We focus on how an embodied agent can make proactive, real-time, and reasonable adaptations and instructions to humans during collaboration. Our work addresses the key challenges of substantial LLM inference latency and the need for clear rationale in adaptation strategies.</p>
+    </section>
+
+    <!-- Overcooked-AI Interface Section -->
+    <section class="section">
+      <h2>Overcooked-AI Interface</h2>
+      
+      <p>The Overcooked-AI environment is designed to test coordination skills of multiple agents or human agents. Agents work together in a layout to achieve higher scores by preparing and serving soups within a set time frame, following recipe-specific cooking procedures.</p>
+
+             <div class="image-container">
+         <img src="./assets/interface.png" alt="Overcooked-AI game interface showing cooking procedure and game interface">
+         <i>Left: The cooking procedure to finish one order. Right: The game interface used to test agents and conduct user studies.</i>
+       </div>
+    </section>
+
+    <!-- Enhanced Benchmark Layouts Section -->
+    <section class="section">
+      <h2>Enhanced Benchmark Layouts</h2>
+      
+      <p>We designed 22 layouts with varying complexity and coordination demands, following teaming fluency metrics. Higher teaming fluency suggests open layouts where agents can operate independently, while lower fluency indicates confined layouts requiring adaptation.</p>
+
+             <div class="image-container">
+         <img src="./assets/layouts.png" alt="Six selected representative layouts with different teaming fluency from 85.3% to 16.7%">
+         <i>Six selected representative layouts with different teaming fluency from 85.3% to 16.7%. The red cross represents a critical point that would interfere with another agent's workflow.</i>
+       </div>
+    </section>
+
+    <!-- Adaptation Scenarios Section -->
+    <section class="section">
+      <h2>Adaptation Scenarios</h2>
+      
+      <p>We design scenarios that explicitly require different adaptation types to evaluate an embodied agent's ability to proactively adapt and guide its human partner.</p>
+
+             <div class="image-container">
+                <i> Three representative path adaptation testing frames designed by human experts: self-adapt, other-adapt, and both-ok types.</i>
+         <img src="./assets/subtaskadaptation.png" alt="Three selected representative path adaptation testing frames and subtask adaptation testing frames">
+         
+         <img src="./assets/actionadaptation.png" alt="Three selected representative path adaptation testing frames and subtask adaptation testing frames">
+         <i> Three representative subtask adaptation testing frames where the blue agent is giving language instructions.</i>
+       </div>
+    </section>
+
+    <!-- MonTA Framework Section -->
+    <section class="section">
+      <h2>MonTA Framework</h2>
+      
+      <p>Inspired by human cognitive studies showing interchange between fast and intuitive thinking versus slow and deliberate thinking, we introduce MonTA agent which leverages fast and light LLM (System 1) to monitor and slow but powerful LLM (System 2) to generate detailed adaptation plans.</p>
+
+             <div class="image-container">
+         <img src="./assets/framework.png" alt="MonTA Framework showing monitor and adapter modules">
+         <i>MonTA Framework. The framework comprises a real-time atomic monitor and two primary adapter modules: the subtask adapter and the path adapter. The monitor operates at high frequency to continuously assess collaboration status.</i>
+       </div>
+    </section>
+
+    <!-- Trade-off Analysis Section -->
+    <section class="section">
+      <h2>Trade-off Analysis</h2>
+      
+      <p>We evaluate the trade-off between success rate and latency across different LLM models, demonstrating that our hierarchical approach effectively balances reasoning accuracy against inference speed.</p>
+
+             <div class="image-container">
+         <img src="./assets/testtime.png" alt="LLM capability and latency evaluation showing success rates and execution frequencies">
+         <i>LLM capability and latency evaluation. Success rates of determining whether adaptation is needed, generating subtask adaptation plans, and generating path adaptation plans; and corresponding average execution frequencies.</i>
+       </div>
+    </section>
+
+    
+
+    <!-- User Study Results Section -->
+    <section class="section">
+      <h2>User Study Results</h2>
+      
+      <p>Human experts found the suggestions generated by MonTA to be reasonable and consistent in nearly 75% of scenarios, indicating effective identification of adaptation needs and correct plan generation.</p>
+
+      <div class="test-grid">
+        <div class="test-item">
+          <h3>Test 1: Language Instruction Evaluation</h3>
+          <div class="image-container">
+            <img src="./assets/test1.png" alt="Language instruction evaluation results showing reasonability and consistency">
+            <i>Language instruction evaluation results. Blue and yellow bars show the ratio of LLM instruction reasonability levels and the consistency of LLM suggestions reported by human experts.</i>
+          </div>
+        </div>
+        <div class="test-item">
+          <h3>Test 2: Adaptation Performance</h3>
+          <div class="image-container">
+            <img src="./assets/test2.png" alt="Detailed evaluation of LLM-generated language instructions for each frame">
+            <i>Detailed evaluation of LLM-generated language instructions for each frame, showing human-reported reasonability and consistency scores.</i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+         <!-- Demo Videos Section -->
+     <section class="section">
+       <h2>Demo Videos</h2>
+       
+       <div class="video-grid">
+                   <!-- Row 1: 2 videos -->
+          <div class="video-row">
+            <div class="video-container">
+              <video autoplay muted loop playsinline controls style="width: 100%; height: auto; background: #000;">
+                <source src="./assets/llama1b_web.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <p style="text-align: center; margin-top: 1rem; font-style: italic; color: #666;">LLaMA 1B Model Demo</p>
+            </div>
+            <div class="video-container">
+              <video autoplay muted loop playsinline controls style="width: 100%; height: auto; background: #000;">
+                <source src="./assets/llama8b_web.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <p style="text-align: center; margin-top: 1rem; font-style: italic; color: #666;">LLaMA 8B Model Demo</p>
+            </div>
+          </div>
+          
+          <!-- Row 2: 2 videos -->
+          <div class="video-row">
+            <div class="video-container">
+              <video autoplay muted loop playsinline controls style="width: 100%; height: auto; background: #000;">
+                <source src="./assets/llama3b_web.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <p style="text-align: center; margin-top: 1rem; font-style: italic; color: #666;">LLaMA 3B Model Demo</p>
+            </div>
+            <div class="video-container">
+              <video autoplay muted loop playsinline controls style="width: 100%; height: auto; background: #000;">
+                <source src="./assets/gptfull_web.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <p style="text-align: center; margin-top: 1rem; font-style: italic; color: #666;">GPT Full Model Demo</p>
+            </div>
+          </div>
+          
+          <!-- Row 3: 1 video -->
+          <div class="video-row">
+            <div class="video-container">
+              <video autoplay muted loop playsinline controls style="width: 100%; height: auto; background: #000;">
+                <source src="./assets/embeddingspeed_web.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <p style="text-align: center; margin-top: 1rem; font-style: italic; color: #666;">Embedding Speed Demo</p>
+            </div>
+          </div>
+       </div>
+     </section>
+
+  </div>
+
+  <!-- ionicon link -->
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>

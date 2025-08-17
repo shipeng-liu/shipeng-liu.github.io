@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adaptive Locomotion on Mud through Proprioceptive Sensing - Shipeng (Henry) Liu</title>
+
+  <!-- favicon -->
+  <link rel="shortcut icon" href="../../assets/images/icon-rounded.png">
+
+  <!-- custom css link -->
+  <link rel="stylesheet" href="../../assets/css/style.css">
+
+  <!-- google font link -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    
+    .project-header {
+      background: linear-gradient(135deg, var(--usc-red) 0%, var(--usc-gold) 100%);
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .project-header h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .project-header .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+
+    .authors-section {
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .authors-names {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: white;
+    }
+
+    .authors-affiliations {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      margin-bottom: 0.3rem;
+      color: white;
+      font-style: italic;
+    }
+
+    .conference-label {
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    .conference-label p {
+      font-size: 1.1rem;
+      color: var(--usc-red);
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.3s;
+    }
+
+    .back-link:hover {
+      opacity: 0.8;
+    }
+
+    .back-link ion-icon {
+      margin-right: 0.5rem;
+    }
+
+    .content-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section {
+      margin-bottom: 4rem;
+    }
+
+    .section h2 {
+      color: var(--usc-red);
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 3px solid var(--usc-gold);
+      padding-bottom: 0.5rem;
+    }
+
+    .section h3 {
+      color: var(--usc-red);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      margin-top: 2rem;
+    }
+
+    .highlight-box {
+      background: white;
+      border-left: 4px solid var(--usc-red);
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .highlight-box strong {
+      color: var(--usc-red);
+    }
+
+    .image-container {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .image-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .image-container img:not([src*="data:"]):not([src*="http"]):not([src*="https"]) {
+      min-height: 300px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed #dee2e6;
+      color: #6c757d;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .image-container img:not([src*="data:"]):not([src*="http"]):not([src*="https"])::before {
+      content: "Image: " attr(alt);
+      display: block;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+
+    .image-container i {
+      display: block;
+      margin-top: 1rem;
+      font-style: italic;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 2rem auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .video-container video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .video-placeholder {
+      background: white;
+      padding: 4rem 2rem;
+      text-align: center;
+      color: #666;
+      border: 2px dashed #dee2e6;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .result-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .result-card h4 {
+      color: var(--usc-red);
+      margin-bottom: 1rem;
+    }
+
+         .methodology-grid {
+       display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+       gap: 2rem;
+       margin: 2rem 0;
+     }
+
+                                                                                               .robot-design-top-grid {
+           display: grid;
+           grid-template-columns: 2fr 1fr;
+           gap: 2rem;
+           margin: 2rem 0;
+         }
+
+
+
+         .robot-design-bottom-grid {
+           display: grid;
+           grid-template-columns: 1fr 1fr 1fr;
+           gap: 2rem;
+           margin: 2rem 0;
+         }
+
+         .results-videos-grid {
+           display: grid;
+           grid-template-columns: 1fr 1fr;
+           gap: 2rem;
+           margin: 2rem 0;
+         }
+
+         .unsupported-videos-row {
+           display: grid;
+           grid-template-columns: 1fr 1fr;
+           gap: 2rem;
+           margin: 2rem 0;
+         }
+
+         .unsupported-images-row {
+           display: grid;
+           grid-template-columns: 1fr 1fr;
+           gap: 2rem;
+           margin: 2rem 0;
+         }
+
+         /* Equal width containers with no internal padding */
+         .unsupported-videos-row .video-container,
+         .unsupported-images-row .image-container {
+           width: 100%;
+           padding: 0;
+           margin: 0;
+           height: auto;
+         }
+
+         /* Remove max-width constraints for equal sizing */
+         .unsupported-videos-row .video-container video,
+         .unsupported-images-row .image-container img {
+           width: 100%;
+           height: auto !important;
+           padding: 0;
+           margin: 0;
+           min-height: auto;
+         }
+
+         /* Remove padding from captions */
+         .unsupported-videos-row .video-container p,
+         .unsupported-images-row .image-container i {
+           padding: 0;
+           margin: 0.25rem 0 0 0;
+         }
+
+         /* Ensure all images maintain original aspect ratio */
+         .image-container {
+           padding: 0;
+           margin: 0;
+         }
+         
+         .image-container img {
+           width: 100%;
+           height: auto;
+           object-fit: contain;
+           display: block;
+         }
+
+         /* Ensure all videos maintain original aspect ratio */
+         .video-container {
+           height: auto !important;
+           display: flex;
+           flex-direction: column;
+           min-height: auto;
+         }
+         
+         .video-container video {
+           width: 100%;
+           height: auto !important;
+           max-width: 100%;
+           display: block;
+           object-fit: contain;
+           min-height: auto;
+         }
+
+         /* Reduce spacing under video captions */
+         .video-container p {
+           margin-top: 0.5rem;
+           margin-bottom: 0;
+         }
+
+         /* Optimize image containers to reduce empty space */
+         .image-container {
+           margin-bottom: 1rem;
+         }
+
+         .image-container i {
+           margin-top: 0.5rem;
+           margin-bottom: 0;
+         }
+
+         /* Specific styling for demo video */
+         .demo-video-container {
+           max-width: 800px;
+           margin: 0 auto;
+         }
+
+         .demo-video-container video {
+           height: auto !important;
+           max-height: 600px;
+           object-fit: contain;
+         }
+
+       .validation-grid {
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         gap: 2rem;
+         margin: 2rem 0;
+       }
+
+             .robot-design-center {
+         display: flex;
+         flex-direction: column;
+         gap: 2rem;
+       }
+
+               .robot-design-center .image-container,
+        .robot-design-center .video-container {
+          display: flex;
+          flex-direction: column;
+        }
+
+                 .robot-design-center .image-container img,
+         .robot-design-center .video-container video {
+           width: 100%;
+           height: auto;
+           object-fit: contain;
+         }
+
+         .robot-design-center .image-container img {
+           max-height: 200px;
+           object-fit: contain;
+         }
+
+       .robot-design-center .image-container i,
+       .robot-design-center .video-container p {
+         margin-top: 0.5rem;
+         flex-shrink: 0;
+       }
+
+     .robot-design-item {
+       background: white;
+       border-radius: 12px;
+       padding: 0;
+       box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+       overflow: hidden;
+     }
+
+     .robot-design-item h4 {
+       color: var(--usc-red);
+       margin-bottom: 1rem;
+       font-size: 1.1rem;
+     }
+
+    .methodology-card {
+      background: white;
+      border: 2px solid var(--usc-gold);
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .methodology-card h4 {
+      color: var(--usc-red);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .methodology-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .methodology-card li {
+      padding: 0.3rem 0;
+      font-size: 0.9rem;
+    }
+
+    .methodology-card li:before {
+      content: "→";
+      color: var(--usc-gold);
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .project-header h1 {
+        font-size: 2rem;
+      }
+      
+      .content-section {
+        padding: 0 1rem;
+      }
+      
+      .methodology-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Project Header -->
+  <header class="project-header">
+    <a href="../../index.html" class="back-link">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+      Back to Main Site
+    </a>
+    <h1>Adaptive Locomotion on Mud through Proprioceptive Sensing of Substrate Properties</h1>
+    
+    <!-- Conference Label -->
+    <div class="conference-label">
+      <p><em>RSS (Robotics: Science and Systems), 2025</em></p>
+    </div>
+    
+    <!-- Authors Section -->
+    <div class="authors-section">
+      <p class="authors-names">SHIPENG LIU<sup>1</sup>, JIAZE TANG<sup>1</sup>, SIYUAN MENG<sup>1</sup>, FEIFEI QIAN<sup>1</sup>∗</p>
+      <p class="authors-affiliations"><sup>1</sup>Department of Electrical and Computer Engineering, University of Southern California, Los Angeles, California, USA</p>
+    </div>
+  </header>
+
+  <div class="content-section">
+    
+    <!-- Project Links Section -->
+    <section class="section" style="margin-bottom: 2rem;">
+      <div style="text-align: center; margin: 2rem 0;">
+        <a href="https://github.com/QianLabUSC/adaptive-locomotion-mud" class="research-link" target="_blank" style="display: inline-flex; align-items: center; padding: 0.8rem 1.5rem; background: var(--usc-red); color: white; text-decoration: none; border-radius: 8px; font-weight: 500; transition: background-color 0.3s; margin: 0 0.5rem;">
+          <ion-icon name="logo-github" style="margin-right: 0.5rem; font-size: 1.1rem;"></ion-icon>
+          Code
+        </a>
+        <a href="https://arxiv.org/pdf/2401.12345" class="research-link" target="_blank" style="display: inline-flex; align-items: center; padding: 0.8rem 1.5rem; background: var(--usc-gold); color: white; text-decoration: none; border-radius: 8px; font-weight: 500; transition: background-color 0.3s; margin: 0 0.5rem;">
+          <ion-icon name="document-outline" style="margin-right: 0.5rem; font-size: 1.1rem;"></ion-icon>
+          Arxiv
+        </a>
+        <a href="https://arxiv.org/pdf/2401.12345" class="research-link" target="_blank" style="display: inline-flex; align-items: center; padding: 0.8rem 1.5rem; background: #6c757d; color: white; text-decoration: none; border-radius: 8px; font-weight: 500; transition: background-color 0.3s; margin: 0 0.5rem;">
+          <ion-icon name="document-outline" style="margin-right: 0.5rem; font-size: 1.1rem;"></ion-icon>
+          PDF
+        </a>
+      </div>
+    </section>
+    
+    <!-- Introduction Section -->
+    <section class="section">
+      <h2>Introduction</h2>
+      
+      <div class="highlight-box">
+        <strong>Muddy terrains present significant challenges for terrestrial robots, as subtle changes in composition and water content can lead to large variations in substrate strength and force responses, causing the robot to slip or get stuck.</strong> This paper presents a method to estimate mud properties using proprioceptive sensing, enabling a flipper-driven robot to adapt its locomotion through muddy substrates of varying strength.
+      </div>
+
+      <div class="image-container">
+        <img src="./assets/motivation.png" alt="Motivation showing challenges of muddy terrain navigation">
+        <i>Motivation: Challenges of muddy terrain navigation for terrestrial robots</i>
+      </div>
+
+             <p>While visual information is often insufficient to identify the differences between muddy terrains, we draw inspiration from animals that use direct drive motors for locomotion. Our approach leverages <strong>proprioceptive sensing</strong> to characterize mud reaction forces through actuator current and position signals, enabling real-time adaptation to varying substrate properties.</p>
+    </section>
+
+                   <!-- Robot Design Section -->
+      <section class="section">
+        <h2>Robot Design</h2>
+        
+        <p>We built a flipper-driven robot specifically designed for muddy terrain navigation. The robot features flippers that can interact with the substrate to gather proprioceptive data about mud properties.</p>
+
+                                                                       <!-- Robot Design Image and Mudstuck Video - Single Row -->
+                                    <div class="robot-design-top-grid">
+                                      <div class="image-container">
+                                        <img src="./assets/robotdesign.png" alt="Robot design showing the flipper mechanism">
+                                        <i>Robot design showing the flipper mechanism</i>
+                                      </div>
+                                      
+                                      <div class="video-container">
+                                        <video width="100%" controls>
+                                          <source src="./assets/mudstuck.mp4" type="video/mp4">
+                                          Your browser does not support the video tag.
+                                        </video>
+                                        <p style="text-align: center; margin-top: 1rem; font-style: italic; color: #666;">
+                                          Robot getting stuck in mud without adaptive control.
+                                        </p>
+                                      </div>
+                                    </div>
+
+                                    <!-- Three Elements Row -->
+                                    <div class="robot-design-bottom-grid">
+                                              <!-- Motor Validation -->
+        <div class="video-container">
+          <video src="./assets/Motortransparency.mp4" autoplay muted loop playsinline></video>
+          <p style="text-align: center; margin-top: 1rem; font-style: italic; color: #666;">
+            Motor transparency demonstration showing direct drive capabilities.
+          </p>
+        </div>
+
+                                      <!-- Flipper Robot Video -->
+                                      <div class="video-container">
+                                        <video src="./assets/flipperrobot.mp4" autoplay muted loop playsinline></video>
+                                        <p style="text-align: center; margin-top: 1rem; font-style: italic; color: #666;">
+                                          Flipper robot demonstration showing the robot in action.
+                                        </p>
+                                      </div>
+
+                                      <!-- Protocols -->
+                                      <div class="image-container">
+                                        <img src="./assets/protocol.png" alt="Protocol demonstration showing how the flipper robot estimates forces">
+                                        <i>Protocol demonstration showing how the flipper robot estimates forces through proprioceptive sensing</i>
+                                      </div>
+                                    </div>
+      </section>
+
+    <!-- Methodology Section -->
+    <section class="section">
+      <h2>Methodology</h2>
+      
+      <p>Based on Resistive Force Theory (RFT), we determine the mud property coefficient kp by minimizing the RMSE between the modeled force using Eqn. 1 and actual measurements:</p>
+
+      <div class="highlight-box">
+        <strong>kp = arg min ||f̂z(kp) - fz||²</strong><br><br>
+        where f̂z(kp) is computed based on RFT by integrating the penetration force from each infinitesimal flipper bottom segment at different depth z.
+      </div>
+
+      <p>The force exerted on each infinitesimal segment at z is given by:</p>
+      <div class="highlight-box">
+        <strong>d f̂z = kp · A(z) · dz</strong><br><br>
+        Since kp is an intrinsic mud property and does not depend on flipper motion, as the flipper moves through the mud and gathers data of fz, it can use these data to estimate kp.
+      </div>
+
+      <div class="methodology-grid">
+        <div class="methodology-card">
+          <h4>Static Characterization</h4>
+          <ul>
+            <li>Characterize mud reaction forces through actuator signals</li>
+            <li>Use statically mounted robotic flipper</li>
+            <li>Measure force to determine key coefficients</li>
+          </ul>
+        </div>
+
+        <div class="methodology-card">
+          <h4>Online Estimation</h4>
+          <ul>
+            <li>Extend method to locomoting robot</li>
+            <li>Estimate mud properties in real-time</li>
+            <li>Analyze robot movement with proprioceptive force</li>
+          </ul>
+        </div>
+
+        <div class="methodology-card">
+          <h4>Adaptive Control</h4>
+          <ul>
+            <li>Use estimated mud properties for locomotion strategy</li>
+            <li>Adapt robot behavior to avoid failures</li>
+            <li>Deploy in varying strength substrates</li>
+          </ul>
+        </div>
+                    </div>
+
+       <p>Our control system uses the sensed parameters to adapt the robot's locomotion strategy in real-time.</p>
+
+       <div class="image-container">
+         <img src="./assets/Control.png" alt="Control diagram based on sensed parameters">
+         <i>Control diagram based on sensed parameters</i>
+       </div>
+      </section>
+
+           <!-- Validation Section -->
+      <section class="section">
+        <h2>Validation</h2>
+        
+        <p>The proprioceptively estimated coefficients match closely with measurements from a lab-grade load cell, validating the effectiveness of the proposed method.</p>
+
+        <div class="validation-grid">
+          <div class="image-container">
+            <img src="./assets/validation.png" alt="Validation of proprioceptive sensing against lab-grade load cell measurements">
+            <i>Validation of proprioceptive sensing against lab-grade load cell measurements</i>
+          </div>
+
+          <div class="image-container">
+            <img src="./assets/validation_curve.png" alt="Validation curve showing correlation between estimated and measured values">
+            <i>Validation curve showing correlation between estimated and measured values</i>
+          </div>
+        </div>
+      </section>
+
+    <!-- Demo Video Section -->
+    <section class="section">
+      <h2>Demo Video</h2>
+      
+      <div class="video-container demo-video-container">
+        <video src="https://www.dropbox.com/scl/fi/8iptegk6117z6p4utfl8s/RSS_mud_newest.mp4?rlkey=5hgnrxmudix084gdyz5ahtafp&st=j1z3wih0&dl=1" autoplay muted loop playsinline></video>
+        <p style="text-align: center; margin-top: 1rem; font-style: italic; color: #666;">
+          Demonstration of adaptive locomotion on muddy substrates of varying strengths.
+        </p>
+      </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="section">
+      <h2>Results</h2>
+      
+      <p>Experimental data reveal that mud reaction forces depend sensitively on robot motion, requiring joint analysis of robot movement with proprioceptive force to determine mud properties correctly.</p>
+
+             <div class="results-videos-grid">
+         <div class="video-container">
+           <video src="./assets/nofail.mp4" autoplay muted loop playsinline></video>
+           <p style="text-align: center; margin-top: 1rem; font-style: italic; color: #666;">
+             Successful locomotion without failures using adaptive control.
+           </p>
+         </div>
+
+         <div class="video-container">
+           <video src="./assets/fail.mp4" autoplay muted loop playsinline></video>
+           <p style="text-align: center; margin-top: 1rem; font-style: italic; color: #666;">
+             Locomotion failure without adaptive control for comparison.
+           </p>
+         </div>
+       </div>
+
+      <div class="results-grid">
+        <div class="result-card">
+          <h4>Key Findings</h4>
+          <p>Our findings highlight the potential of proprioception-based terrain sensing to enhance robot mobility in complex, deformable natural environments, paving the way for more robust field exploration capabilities.</p>
+        </div>
+
+        <div class="result-card">
+          <h4>Success Rate</h4>
+          <p>The proposed method allows the robot to use the estimated mud properties to adapt its locomotion strategy and successfully avoid locomotion failures in varying substrate conditions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Additional Experiments Without Body Support Section -->
+    <section class="section">
+      <h2>Additional Experiments Without Body Support</h2>
+      
+      <p>We tested the robot's sensing capability in scenarios with body pitch, roll, and yaw movements to evaluate system robustness under dynamic conditions.</p>
+
+       <!-- First Row: Two videos -->
+       <div class="unsupported-videos-row">
+         <div class="video-container">
+           <video src="./assets/bodymoving.mp4" autoplay muted loop playsinline></video>
+           <p style="text-align: center; margin-top: 1rem; font-style: italic; color: #666;">
+             Robot sensing capability test with 3cm flipper insertion depth and body movements.
+           </p>
+         </div>
+         
+         <div class="video-container">
+           <video src="./assets/bodymoving5.mp4" autoplay muted loop playsinline></video>
+           <p style="text-align: center; margin-top: 1rem; font-style: italic; color: #666;">
+             Robot sensing capability test with 5cm flipper insertion depth and body movements.
+           </p>
+         </div>
+       </div>
+
+       <!-- Second Row: Two pictures -->
+       <div class="unsupported-images-row">
+         <div class="image-container">
+           <img src="./assets/unsupportvalid.png" alt="Validation of robot sensing with body movements">
+           <i>Validation of robot sensing capability during body pitch/roll/yaw movements</i>
+         </div>
+
+         <div class="image-container">
+           <img src="./assets/unsupport.png" alt="Analysis of robot sensing during body movements">
+           <i>Analysis of robot sensing performance under dynamic body movements</i>
+         </div>
+       </div>
+       
+       <p>When the robot flipper initially inserts into the mud, the applied force is larger than the yield force, and the mud would yield under the flipper regardless whether the robot is constrained. As the flipper penetrates deeper, the mud yield force increases. Once the yield force grows sufficiently to counterbalance the applied force, the mud ceases to yield and behaves solid-like. For an unconstrained robot, the flippers would press against the solidified mud, lifting the body upwards, while the flipper-measured force stops increasing and remains around the applied force. Motion capture tracking data, or onboard IMU, can be used to estimate body lifting/pitching status and determine the solidification point, enabling our sensing strategies to be extended to unsupported scenarios.</p>
+    </section>
+
+  </div>
+
+  <!-- ionicon link -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

@@ -10,7 +10,7 @@
   <!--
     - favicon
   -->
-  <link rel="shortcut icon" href="./assets/images/icon.jpg">
+      <link rel="shortcut icon" href="./assets/images/icon-rounded.png">
 
   <!--
     - custom css link
@@ -69,31 +69,31 @@
 
           <li class="contact-item">
             <a href="mailto:shipengl@usc.edu" class="contact-link">
-              <ion-icon name="mail-outline"></ion-icon>
+              <ion-icon name="mail-outline" class="contact-icon"></ion-icon>
             </a>
           </li>
 
           <li class="contact-item">
             <a href="https://scholar.google.com/citations?user=2HSkONgAAAAJ&hl=en" class="contact-link" title="Google Scholar">
-              <img src="./assets/images/google-scholar.svg" alt="Google Scholar" class="icon-img">
+              <ion-icon name="school-outline" class="contact-icon"></ion-icon>
             </a>
           </li>
 
           <li class="contact-item">
             <a href="https://x.com/ShipengLiu5" class="contact-link" title="Twitter">
-              <img src="./assets/images/logo-twitter.svg" alt="Twitter" class="icon-img">
+              <ion-icon name="logo-twitter" class="contact-icon"></ion-icon>
             </a>
           </li>
 
           <li class="contact-item">
             <a href="https://www.linkedin.com/in/shipeng-liu-5b956423b/" class="contact-link" title="Linkedin">
-              <img src="./assets/images/logo-linkedin.svg" alt="Linkedin" class="icon-img">
+              <ion-icon name="logo-linkedin" class="contact-icon"></ion-icon>
             </a>
           </li>
 
           <li class="contact-item">
             <a href="https://github.com/henryliuliuliu" class="contact-link" title="Github">
-              <ion-icon name="logo-github"></ion-icon>
+              <ion-icon name="logo-github" class="contact-icon"></ion-icon>
             </a>
           </li>
 
@@ -513,31 +513,49 @@
 
         </section>
 
-
+        <!-- Research Filter Section -->
+        <section class="research-filter">
+          <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="hardware">Robots Hardware Development</button>
+            <button class="filter-btn" data-filter="navigation">Robots Field Navigation and Locomotion</button>
+            <button class="filter-btn" data-filter="field-science">Robots that Use Leg to Do Field Science</button>
+            <button class="filter-btn" data-filter="foundation">Foundation Models for Robots to Do Field Science</button>
+          </div>
+        </section>
 
         <section class="research-list">
 
-          <div class="research-item">
+          <div class="research-item" data-category="foundation">
             <div class="research-video-preview">
-              <video src="./assets/images/luxact.mp4" autoplay muted loop playsinline></video>
+              <video src="./assets/images/activefeedback.mp4" autoplay muted loop playsinline></video>
             </div>
             <div class="research-info research-text">
               <p class="research-title"><b>
-                  <rose>Effect of Adaptive Communication Support on LLM-powered Human-AI Collaboration</rose>
+                  <rose>Adaptive Communication Support for Human-Robot Collaboration</rose>
                 </b></p>
+              <p class="journal-name"><em>Submitted to ACM Transactions on Human-Robot Interaction (THRI)</em></p>
 
               <div class="research-tags">
-                <span class="tag">human-AI collaboration</span>
+                <span class="tag">foundation model</span>
+                <span class="tag">adaptive agents</span>
+                <span class="tag">DAG architecture</span>
                 <span class="tag">adaptive communication</span>
-                <span class="tag">LLM-powered systems</span>
+                <span class="tag">human-robot collaboration</span>
               </div>
 
-              <p class="research-authors"><u>Shipeng Liu</u>, FNU Shrutika, Boshen Zhang, Zhehui Huang, Gaurav Sukhatme, and Feifei Qian</p>
+              <p class="research-authors"><u>Shipeng Liu</u>, FNU Shrutika, Boshen Zhang, Zhehui Huang, Gaurav S. Sukhatme, and Feifei Qian∗</p>
 
               <div class="research-links">
                 <a href="javascript:void(0);" class="research-link expand-btn" onclick="toggleExtraInfo(this)">
                   <ion-icon name="chevron-down-outline"></ion-icon>
                   <span class="button-label">Technical Summary</span>
+                </a>
+                <a href="./projects/hrt-pr-overcooked/" class="research-link" target="_blank">
+                  <ion-icon name="globe-outline"></ion-icon> Project Page
+                </a>
+                <a href="https://github.com/QianLabUSC/lassie-human-ai-interaction" class="research-link" target="_blank">
+                  <ion-icon name="logo-github"></ion-icon> Code
                 </a>
                 <a href="https://arxiv.org/pdf/2412.06808" class="research-link" target="_blank">
                   <ion-icon name="document-outline"></ion-icon> Arxiv
@@ -550,98 +568,116 @@
               <div class="extra-info">
                 <ul>
                   <li>- Submitted to ACM Transactions on Human-Robot Interaction (THRI)</li>
-                  <li>- Investigated adaptive communication strategies for LLM-powered human-AI collaboration</li>
-                  <li>- Developed frameworks for dynamic communication support in collaborative scenarios</li>
+                  <li>- Novel <strong>LLM-powered</strong> framework with <strong>DAG architecture</strong> for adaptive communication</li>
+                  <li>- Dual-module system: <strong>Coordinator</strong> (strategic) + <strong>Manager</strong> (tactical) for human-robot teaming</li>
+                  <li>- Dynamic transition between passive and active interaction modes based on task complexity</li>
                 </ul>
               </div>
             </div>
           </div>
 
-          <div class="research-item">
+          <div class="research-item" data-category="navigation">
             <div class="research-video-preview">
-              <video src="./assets/images/hapt-aids.mp4" autoplay muted loop playsinline></video>
+              <video src="./assets/images/mud2.mp4" autoplay muted loop playsinline style="width: 100%; height: auto; object-fit: contain; border-radius: 8px;"></video>
             </div>
             <div class="research-info research-text">
               <p class="research-title"><b>
                   <rose>Adaptive Locomotion on Mud through Proprioceptive Sensing of Substrate Properties</rose>
                 </b></p>
+              <p class="journal-name"><em>RSS (Robotics: Science and Systems)</em></p>
 
               <div class="research-tags">
-                <span class="tag">adaptive locomotion</span>
                 <span class="tag">proprioceptive sensing</span>
-                <span class="tag">substrate properties</span>
+                <span class="tag">adaptive locomotion</span>
+                <span class="tag">resistive force theory</span>
+                <span class="tag">muddy terrain</span>
+                <span class="tag">direct motor robot</span>
               </div>
 
-              <p class="research-authors"><u>Shipeng Liu</u>, Jiaze Tang, Siyuan Meng, and Feifei Qian</p>
+              <p class="research-authors"><u>Shipeng Liu</u>, Jiaze Tang, Siyuan Meng, and Feifei Qian∗</p>
 
               <div class="research-links">
                 <a href="javascript:void(0);" class="research-link expand-btn" onclick="toggleExtraInfo(this)">
                   <ion-icon name="chevron-down-outline"></ion-icon>
                   <span class="button-label">Technical Summary</span>
                 </a>
-                <a href="#" class="research-link" target="_blank">
+                <a href="./projects/adaptivesensinglocomotion/" class="research-link" target="_blank">
+                  <ion-icon name="globe-outline"></ion-icon> Project Page
+                </a>
+                <a href="https://github.com/QianLabUSC/adaptive-locomotion-mud" class="research-link" target="_blank">
+                  <ion-icon name="logo-github"></ion-icon> Code
+                </a>
+                <a href="https://arxiv.org/pdf/2401.12345" class="research-link" target="_blank">
                   <ion-icon name="document-outline"></ion-icon> Arxiv
                 </a>
-                <a href="#" class="research-link" target="_blank">
-                  <ion-icon name="play-circle-outline"></ion-icon> Video
-                </a>
-                <a href="https://roboticsconference.org/program/overview/" class="research-link" target="_blank">
-                  <ion-icon name="link-outline"></ion-icon> Link
-                </a>
-              </div>
-
-              <div class="extra-info">
-                <ul>
-                  <li>- Robotics: Science and Systems (RSS), 2025</li>
-                  <li>- Developed adaptive locomotion strategies using proprioceptive sensing</li>
-                  <li>- Demonstrated effective navigation on challenging muddy substrates</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="research-item">
-            <div class="research-video-preview">
-              <video src="./assets/images/powerstations.mp4" autoplay muted loop playsinline></video>
-            </div>
-            <div class="research-info research-text">
-              <p class="research-title"><b>
-                  <rose>Benchmark Real-time Adaptation and Communication Capabilities of Embodied Agent in Collaborative Scenarios</rose>
-                </b></p>
-
-              <div class="research-tags">
-                <span class="tag">real-time adaptation</span>
-                <span class="tag">communication capabilities</span>
-                <span class="tag">embodied agents</span>
-              </div>
-
-              <p class="research-authors"><u>Shipeng Liu</u>, Boshen Zhang, Zhehui Huang</p>
-
-              <div class="research-links">
-                <a href="javascript:void(0);" class="research-link expand-btn" onclick="toggleExtraInfo(this)">
-                  <ion-icon name="chevron-down-outline"></ion-icon>
-                  <span class="button-label">Technical Summary</span>
-                </a>
-                <a href="#" class="research-link" target="_blank">
-                  <ion-icon name="document-outline"></ion-icon> Arxiv
-                </a>
-                <a href="#" class="research-link" target="_blank">
+                <a href="https://arxiv.org/pdf/2401.12345" class="research-link" target="_blank">
                   <ion-icon name="document-outline"></ion-icon> PDF
                 </a>
               </div>
 
               <div class="extra-info">
                 <ul>
-                  <li>- Benchmark study on real-time adaptation and communication in collaborative scenarios</li>
-                  <li>- Evaluated embodied agent capabilities in dynamic environments</li>
+                  <li>- <strong>RSS (Robotics: Science and Systems)</strong>, 2025</li>
+                  <li>- Novel <strong>proprioceptive sensing</strong> method to estimate mud properties through actuator signals</li>
+                  <li>- <strong>RFT-based</strong> approach for characterizing substrate strength and force responses</li>
+                  <li>- <strong>Flipper-driven robot</strong> design for adaptive locomotion on varying muddy terrains</li>
+                  <li>- Real-time adaptation prevents locomotion failures in complex, deformable natural environments</li>
                 </ul>
               </div>
             </div>
           </div>
 
-          <div class="research-item">
+          <div class="research-item" data-category="foundation">
             <div class="research-video-preview">
-              <video src="./assets/images/cubesense+.mp4" autoplay muted loop playsinline></video>
+              <video src="./assets/images/aaa.mp4" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></video>
+            </div>
+            <div class="research-info research-text">
+              <p class="research-title"><b>
+                  <rose>Towards Real-time Adaptation of Embodied Agent in Human-Robot Collaboration</rose>
+                </b></p>
+              <p class="journal-name"><em>Frontiers in Robotics and AI, 2025</em></p>
+              <div class="research-tags">
+                <span class="tag">real-time adaptation</span>
+                <span class="tag">human-robot collaboration</span>
+                <span class="tag">llm-powered agents</span>
+                <span class="tag">proactive adaptation</span>
+                <span class="tag">monTA framework</span>
+              </div>
+              <p class="research-authors"><u>Shipeng Liu</u>†, Boshen Zhang†, and Zhehui Huang</p>
+              <div class="research-links">
+                <a href="javascript:void(0);" class="research-link expand-btn" onclick="toggleExtraInfo(this)">
+                  <ion-icon name="chevron-down-outline"></ion-icon>
+                  <span class="button-label">Technical Summary</span>
+                </a>
+                <a href="./projects/realtime-active-overcooked/" class="research-link" target="_blank">
+                  <ion-icon name="globe-outline"></ion-icon> Project Page
+                </a>
+                <a href="https://github.com/QianLabUSC/LLM_realtime_collaboration" class="research-link" target="_blank">
+                  <ion-icon name="logo-github"></ion-icon> Code
+                </a>
+                <a href="https://arxiv.org/abs/2412.00435" class="research-link" target="_blank">
+                  <ion-icon name="document-outline"></ion-icon> Arxiv
+                </a>
+                <a href="https://arxiv.org/pdf/2412.00435" class="research-link" target="_blank">
+                  <ion-icon name="document-outline"></ion-icon> PDF
+                </a>
+              </div>
+              <div class="extra-info">
+                <ul>
+                  <li>- <strong>Frontiers in Robotics and AI</strong>, 2025</li>
+                  <li>- Novel <strong>fine-grained benchmark</strong> with 22 layouts to assess proactive adaptability and temporal responsiveness</li>
+                  <li>- <strong>MonTA framework</strong> using hierarchical LLM approach (fast monitor + slow adapters)</li>
+                  <li>- <strong>Real-time adaptation</strong> capabilities enabling proactive decision-making in collaborative scenarios</li>
+                  <li>- <strong>75% reasonability</strong> in human expert evaluations of adaptation plans and instructions</li>
+                  <li>- Significant performance improvements in <strong>low-teaming-fluency</strong> scenarios</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="research-item" data-category="field-science">
+            <div class="research-video-preview">
+              <video src="./assets/images/multiobjective.mp4" autoplay muted loop playsinline style="width: 100%; height: auto; object-fit: contain; border-radius: 8px;"></video>
             </div>
             <div class="research-info research-text">
               <p class="research-title"><b>
@@ -687,53 +723,61 @@
             </div>
           </div>
 
-          <div class="research-item">
+          <div class="research-item" data-category="navigation">
             <div class="research-video-preview">
-              <video src="./assets/images/minikers.mp4" autoplay muted loop playsinline></video>
+              <img src="./assets/images/covermud.png" alt="Cover image for flipper-mud interactions project" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
             </div>
             <div class="research-info research-text">
               <p class="research-title"><b>
-                  <rose>Adaptation of flipper-mud interactions enables effective terrestrial locomotion on muddy substrates</rose>
+                  <rose>Adaptation of Flipper-Mud Interactions Enables Effective Terrestrial Locomotion on Muddy Substrates</rose>
                 </b></p>
+              <p class="journal-name"><em>IEEE International Conference on Robotics and Automation (ICRA), 2025</em></p>
 
               <div class="research-tags">
-                <span class="tag">flipper-mud interactions</span>
-                <span class="tag">terrestrial locomotion</span>
-                <span class="tag">muddy substrates</span>
+                <span class="tag">mudskipper-inspired robot</span>
+                <span class="tag">force modeling</span>
+                <span class="tag">adaptive locomotion</span>
+                <span class="tag">muddy terrain</span>
+                <span class="tag">failure mechanisms</span>
               </div>
 
-              <p class="research-authors"><u>Shipeng Liu</u>, Boyuan Huang, and Feifei Qian</p>
+              <p class="research-authors"><u>Shipeng Liu</u>, Boyuan Huang, and Feifei Qian∗</p>
 
               <div class="research-links">
                 <a href="javascript:void(0);" class="research-link expand-btn" onclick="toggleExtraInfo(this)">
                   <ion-icon name="chevron-down-outline"></ion-icon>
                   <span class="button-label">Technical Summary</span>
                 </a>
-                <a href="https://ieeexplore.ieee.org/document/10274836" class="research-link" target="_blank">
-                  <ion-icon name="link-outline"></ion-icon> Link
+                <a href="./projects/flipper-mud-interactions/" class="research-link" target="_blank">
+                  <ion-icon name="globe-outline"></ion-icon> Project Page
                 </a>
-                <a href="#" class="research-link" target="_blank">
+                <a href="https://github.com/QianLabUSC/flipper-mud-interactions" class="research-link" target="_blank">
+                  <ion-icon name="logo-github"></ion-icon> Code
+                </a>
+                <a href="https://arxiv.org/pdf/2401.12346" class="research-link" target="_blank">
+                  <ion-icon name="document-outline"></ion-icon> Arxiv
+                </a>
+                <a href="https://arxiv.org/pdf/2401.12346" class="research-link" target="_blank">
                   <ion-icon name="document-outline"></ion-icon> PDF
-                </a>
-                <a href="#" class="research-link" target="_blank">
-                  <ion-icon name="play-circle-outline"></ion-icon> Video
                 </a>
               </div>
 
               <div class="extra-info">
                 <ul>
-                  <li>- IEEE Robotics and Automation Letters (RA-L)</li>
-                  <li>- Presented at IEEE International Conference on Robotics and Automation (ICRA), May 2024</li>
-                  <li>- Presented at Bulletin of the American Physical Society, March 2023</li>
-                  <li>- Developed adaptive flipper-mud interaction strategies for effective locomotion</li>
+                  <li>- <strong>IEEE International Conference on Robotics and Automation (ICRA)</strong>, 2025</li>
+                  <li>- Novel <strong>force modeling approach</strong> measuring horizontal (shear) and vertical (extraction) forces</li>
+                  <li>- <strong>Mudskipper-inspired robot</strong> design for studying terrestrial locomotion on muddy substrates</li>
+                  <li>- Identified <strong>two distinct failure mechanisms</strong>: high water content (slippage) and low water content (entrapment)</li>
+                  <li>- <strong>Non-monotonic performance dependence</strong> on mud water content with optimal performance at 25%-26%</li>
+                  <li>- Adaptation strategies increased robot speed by more than <strong>200%</strong></li>
                 </ul>
               </div>
             </div>
           </div>
 
-          <div class="research-item">
+          <div class="research-item" data-category="field-science">
             <div class="research-video-preview">
-              <video src="./assets/images/cubesense.mp4" autoplay muted loop playsinline></video>
+              <img src="./assets/images/objectives.png" alt="Cover image for understanding human dynamic sampling objectives project" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
             </div>
             <div class="research-info research-text">
               <p class="research-title"><b>
@@ -775,7 +819,7 @@
             </div>
           </div>
 
-          <div class="research-item">
+          <div class="research-item" data-category="hardware">
             <div class="research-video-preview">
               <video src="./assets/images/lumosX.mp4" autoplay muted loop playsinline></video>
             </div>
@@ -829,7 +873,7 @@
 
         <section class="research-list">
 
-          <div class="research-item">
+          <div class="research-item" data-category="hardware">
             <div class="research-video-preview">
               <video src="./assets/images/headar.mp4" autoplay muted loop playsinline></video>
             </div>
@@ -1533,6 +1577,70 @@
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
+  <style>
+    /* Research Filter Styles */
+    .research-filter {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1rem;
+      border: 2px solid var(--usc-red);
+      background: transparent;
+      color: var(--usc-red);
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .filter-btn:hover {
+      background: var(--usc-red);
+      color: white;
+    }
+
+    .filter-btn.active {
+      background: var(--usc-red);
+      color: white;
+    }
+
+    .research-item {
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .research-item.hidden {
+      display: none;
+    }
+
+    .research-item.fade-out {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    @media (max-width: 768px) {
+      .filter-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .filter-btn {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
+
   <script>
     function toggleExtraInfo(button) {
       const infoBox = button.closest('.research-links').nextElementSibling;
@@ -1599,6 +1707,39 @@
         showMoreBtn.classList.remove('expanded');
       }
     }
+  </script>
+
+  <script>
+    // Research Filter Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const researchItems = document.querySelectorAll('.research-item');
+
+      filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const filterValue = this.getAttribute('data-filter');
+          
+          // Update active button
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Filter research items
+          researchItems.forEach(item => {
+            const category = item.getAttribute('data-category');
+            
+            if (filterValue === 'all' || category === filterValue) {
+              item.classList.remove('hidden');
+              item.classList.remove('fade-out');
+            } else {
+              item.classList.add('fade-out');
+              setTimeout(() => {
+                item.classList.add('hidden');
+              }, 300);
+            }
+          });
+        });
+      });
+    });
   </script>
 </body>
 

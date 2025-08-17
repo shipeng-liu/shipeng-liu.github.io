@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Adaptive Communication Support for Human-Robot Collaboration - Shipeng (Henry) Liu</title>
+
+  <!-- favicon -->
+      <link rel="shortcut icon" href="../../assets/images/icon-rounded.png">
+
+  <!-- custom css link -->
+  <link rel="stylesheet" href="../../assets/css/style.css">
+
+  <!-- google font link -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    .project-header {
+      background: linear-gradient(135deg, var(--usc-red) 0%, var(--usc-gold) 100%);
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .project-header h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+         .project-header .subtitle {
+       font-size: 1.2rem;
+       opacity: 0.9;
+       margin-bottom: 2rem;
+     }
+
+     .authors-section {
+       margin: 2rem 0;
+       text-align: center;
+     }
+
+     .authors-names {
+       font-size: 1.1rem;
+       font-weight: 500;
+       margin-bottom: 0.5rem;
+       color: white;
+     }
+
+     .authors-affiliations {
+       font-size: 0.9rem;
+       opacity: 0.9;
+       margin-bottom: 0.3rem;
+       color: white;
+       font-style: italic;
+     }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.3s;
+    }
+
+    .back-link:hover {
+      opacity: 0.8;
+    }
+
+    .back-link ion-icon {
+      margin-right: 0.5rem;
+    }
+
+    .content-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section {
+      margin-bottom: 4rem;
+    }
+
+    .section h2 {
+      color: var(--usc-red);
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 3px solid var(--usc-gold);
+      padding-bottom: 0.5rem;
+    }
+
+    .section h3 {
+      color: var(--usc-red);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      margin-top: 2rem;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-left: 4px solid var(--usc-red);
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 8px;
+    }
+
+    .highlight-box strong {
+      color: var(--usc-red);
+    }
+
+    .image-container {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+         .image-container img {
+       max-width: 100%;
+       height: auto;
+       border-radius: 12px;
+       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+     }
+
+     .image-container img:not([src*="data:"]):not([src*="http"]):not([src*="https"]) {
+       min-height: 300px;
+       background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       border: 2px dashed #dee2e6;
+       color: #6c757d;
+       font-family: Arial, sans-serif;
+       font-size: 16px;
+       text-align: center;
+       padding: 2rem;
+     }
+
+     .image-container img:not([src*="data:"]):not([src*="http"]):not([src*="https"])::before {
+       content: "Image: " attr(alt);
+       display: block;
+       margin-bottom: 1rem;
+       font-weight: bold;
+     }
+
+    .image-container i {
+      display: block;
+      margin-top: 1rem;
+      font-style: italic;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .agent-modes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .mode-card {
+      background: white;
+      border: 2px solid #e9ecef;
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .mode-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+
+    .mode-card h4 {
+      color: var(--usc-red);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .mode-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .mode-card li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .mode-card li:last-child {
+      border-bottom: none;
+    }
+
+    .mode-card li:before {
+      content: "•";
+      color: var(--usc-gold);
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .principle-card {
+      background: white;
+      border: 2px solid var(--usc-gold);
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .principle-card h4 {
+      color: var(--usc-red);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .principle-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .principle-card li {
+      padding: 0.3rem 0;
+      font-size: 0.9rem;
+    }
+
+    .principle-card li:before {
+      content: "→";
+      color: var(--usc-gold);
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 2rem auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .video-container video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .video-placeholder {
+      background: #f8f9fa;
+      padding: 4rem 2rem;
+      text-align: center;
+      color: #666;
+      border: 2px dashed #dee2e6;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .result-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .result-card h4 {
+      color: var(--usc-red);
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .project-header h1 {
+        font-size: 2rem;
+      }
+      
+      .content-section {
+        padding: 0 1rem;
+      }
+      
+      .agent-modes,
+      .principles-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Project Header -->
+  <header class="project-header">
+         <a href="../../index.html" class="back-link">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+      Back to Main Site
+    </a>
+              <h1>Adaptive Communication Support for Human-Robot Collaboration</h1>
+     
+           <!-- Authors Section -->
+      <div class="authors-section">
+        <p class="authors-names">SHIPENG LIU<sup>1</sup>, FNU SHRUTIKA<sup>2</sup>, BOSHEN ZHANG<sup>2</sup>, ZHEHUI HUANG<sup>2</sup>, GAURAV S. SUKHATME<sup>2</sup>, FEIFEI QIAN<sup>1</sup>∗</p>
+        <p class="authors-affiliations"><sup>1</sup>Department of Electrical and Computer Engineering, University of Southern California, USA</p>
+        <p class="authors-affiliations"><sup>2</sup>Thomas Lord Department of Computer Science, University of Southern California, USA</p>
+      </div>
+   </header>
+
+   <div class="content-section">
+     
+     <!-- Project Links Section -->
+     <section class="section" style="margin-bottom: 2rem;">
+       <div style="text-align: center; margin: 2rem 0;">
+         <a href="https://github.com/QianLabUSC/lassie-human-ai-interaction" class="research-link" target="_blank" style="display: inline-flex; align-items: center; padding: 0.8rem 1.5rem; background: var(--usc-red); color: white; text-decoration: none; border-radius: 8px; font-weight: 500; transition: background-color 0.3s; margin: 0 0.5rem;">
+           <ion-icon name="logo-github" style="margin-right: 0.5rem; font-size: 1.1rem;"></ion-icon>
+           Code
+         </a>
+         <a href="https://arxiv.org/pdf/2412.06808" class="research-link" target="_blank" style="display: inline-flex; align-items: center; padding: 0.8rem 1.5rem; background: var(--usc-gold); color: white; text-decoration: none; border-radius: 8px; font-weight: 500; transition: background-color 0.3s; margin: 0 0.5rem;">
+           <ion-icon name="document-outline" style="margin-right: 0.5rem; font-size: 1.1rem;"></ion-icon>
+           Arxiv
+         </a>
+         <a href="https://arxiv.org/pdf/2412.06808" class="research-link" target="_blank" style="display: inline-flex; align-items: center; padding: 0.8rem 1.5rem; background: #6c757d; color: white; text-decoration: none; border-radius: 8px; font-weight: 500; transition: background-color 0.3s; margin: 0 0.5rem;">
+           <ion-icon name="document-outline" style="margin-right: 0.5rem; font-size: 1.1rem;"></ion-icon>
+           PDF
+         </a>
+            </div>
+     </section>
+     
+     <!-- Introduction Section -->
+    <section class="section">
+      <h2>Introduction</h2>
+      
+      <div class="highlight-box">
+        <strong>Effective human-robot collaboration requires robots to adapt their roles and levels of support based on human needs, task requirements, and complexity.</strong> We propose a Human-Robot Teaming Framework with Proactive Reactive Feedback (HRT-PR), designed to enhance human-robot interaction through dynamic adjustment of feedback frequency and content.
+      </div>
+
+      <p><strong>Leveraging the strong communication capabilities of Large Language Models (LLMs) as foundation models</strong>, our framework implements a dual-module architecture with a <strong>DAG (Directed Acyclic Graph)</strong> structure: a <strong>Coordinator</strong> that provides high-level, low-frequency strategic guidance, and a <strong>Manager</strong> that delivers subtask-specific, high-frequency instructions. This design enables both passive and active interaction modes, allowing robotic agents to seamlessly transition between supportive and directive roles based on real-time assessment of human needs and task demands.</p>
+
+             <div class="image-container">
+         <img src="./assets/fig1.png" alt="HRT-PR interface based on Overcooked AI environment">
+         <i>HRT-PR interface based on Overcooked AI environment</i>
+       </div>
+    </section>
+
+    <!-- Environment Section -->
+    <section class="section">
+      <h2>Environment</h2>
+      
+      <p>We built our system on top of the original <a href="https://github.com/HumanCompatibleAI/overcooked_ai" target="_blank" class="text-link">Overcooked AI</a> environment, which provides an ideal testbed for studying human-robot collaboration as it requires coordination, task division, and real-time communication—key elements of effective teaming.</p>
+
+             <div class="image-container">
+         <img src="./assets/fig8.png" alt="Different game layouts used in our experiments">
+         <i>Different game layouts used in our experiments</i>
+       </div>
+    </section>
+
+    <!-- Agent Modes Section -->
+    <section class="section">
+      <h2>Agent Modes</h2>
+      
+      <p>Our framework supports three different agent interaction styles:</p>
+
+             <div class="image-container">
+         <img src="./assets/fig2.png" alt="Overview of different agent modes and their characteristics">
+         <i>Overview of different agent modes and their characteristics</i>
+       </div>
+
+      <div class="agent-modes">
+        <div class="mode-card">
+          <h4>Default</h4>
+          <ul>
+            <li>A greedy agent collaborates with humans without any communication</li>
+            <li>No proactive or reactive feedback</li>
+            <li>Baseline for comparison</li>
+          </ul>
+        </div>
+
+        <div class="mode-card">
+          <h4>Passive Leader-Follower Style</h4>
+          <ul>
+            <li>Agent receives and acts upon instructions based on human preferences</li>
+            <li>Reactive communication only</li>
+            <li>Supportive role in collaboration</li>
+          </ul>
+        </div>
+
+        <div class="mode-card">
+          <h4>Active Peer-to-Peer Style</h4>
+          <ul>
+            <li>Besides receiving and acting upon instructions, it also provides feedback based on human past behavior</li>
+            <li>Both proactive and reactive communication</li>
+            <li>More directive role in collaboration</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+         <!-- Demo Video Section -->
+     <section class="section">
+       <h2>Demo Video</h2>
+       
+       <div class="video-container">
+         <video width="100%" controls>
+           <source src="https://www.dropbox.com/scl/fi/kzhhb9cj1z5dh8ye8muhh/supplenmentary_video.mp4?rlkey=c6btki1u5c0t859etuqwrxxto&st=e2mvawbi&raw=1" type="video/mp4">
+           Your browser does not support the video tag.
+         </video>
+         <p style="text-align: center; margin-top: 1rem; font-style: italic; color: #666;">
+           The human player controls the blue hat agent, while the AI agent (red hat) adapts its communication frequency and strategy based on the HRT-PR framework.
+         </p>
+       </div>
+     </section>
+
+    <!-- Survey Design Section -->
+    <section class="section">
+      <h2>Survey Design</h2>
+      
+             <div class="image-container">
+         <img src="./assets/fig3.png" alt="Survey design and participant feedback collection methodology">
+         <i>Survey design and participant feedback collection methodology</i>
+       </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="section">
+      <h2>Results</h2>
+      
+             <div class="image-container">
+         <img src="./assets/fig7.png" alt="Experimental results showing the relationship between task complexity and optimal communication frequency">
+         <i>Experimental results showing the relationship between task complexity and optimal communication frequency</i>
+       </div>
+
+       <div class="image-container">
+         <img src="./assets/fig5.png" alt="Detailed analysis of performance metrics across different agent modes and task complexities">
+         <i>Detailed analysis of performance metrics across different agent modes and task complexities</i>
+       </div>
+
+      <div class="results-grid">
+        <div class="result-card">
+          <h4>Key Findings</h4>
+          <p>Our results reveal a nuanced relationship between task complexity, human capabilities, and optimal robot communication strategies. As task complexity increases relative to human capabilities, human teammates demonstrate a stronger preference for robots that offer frequent, proactive support.</p>
+        </div>
+
+        <div class="result-card">
+          <h4>Critical Threshold</h4>
+          <p>However, we identify a critical threshold: when task complexities exceed the LLM's capacity, superactive robotic agents can generate noisy and inaccurate feedback that hinders team performance.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Principles Section -->
+    <section class="section">
+      <h2>Principles</h2>
+      
+      <p>Based on our experimental results, we identify four key cases that determine optimal robot communication strategies:</p>
+
+             <div class="image-container">
+         <img src="./assets/princinple.png" alt="Four cases of task complexity (Th) vs. agent capability (Cl) and human capability (Ch)">
+         <i>Four cases of task complexity (Th) vs. agent capability (Cl) and human capability (Ch)</i>
+       </div>
+
+      <div class="principles-grid">
+        <div class="principle-card">
+          <h4>Case 1: Low Task Complexity, High Capabilities</h4>
+          <p><strong>Th < Cl, Th < Ch</strong></p>
+          <ul>
+            <li>Task is manageable for both human and agent</li>
+            <li>Minimal communication needed</li>
+            <li>Passive or default agent mode optimal</li>
+          </ul>
+        </div>
+
+        <div class="principle-card">
+          <h4>Case 2: High Task Complexity, High Capabilities</h4>
+          <p><strong>Th > Cl, Th < Ch</strong></p>
+          <ul>
+            <li>Task exceeds agent capability but human can handle</li>
+            <li>Agent should provide supportive communication</li>
+            <li>Passive leader-follower style recommended</li>
+          </ul>
+        </div>
+
+        <div class="principle-card">
+          <h4>Case 3: Low Task Complexity, Low Capabilities</h4>
+          <p><strong>Th < Cl, Th > Ch</strong></p>
+          <ul>
+            <li>Task exceeds human capability but agent can handle</li>
+            <li>Agent should take more active role</li>
+            <li>Active peer-to-peer style optimal</li>
+          </ul>
+        </div>
+
+        <div class="principle-card">
+          <h4>Case 4: High Task Complexity, Low Capabilities</h4>
+          <p><strong>Th > Cl, Th > Ch</strong></p>
+          <ul>
+            <li>Task exceeds both human and agent capabilities</li>
+            <li>Communication may become noisy and counterproductive</li>
+            <li>Need to balance support without overwhelming</li>
+          </ul>
+        </div>
+             </div>
+     </section>
+
+   </div>
+
+   <!-- ionicon link -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
