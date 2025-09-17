@@ -362,7 +362,7 @@ main {
 }
 
 .text-bold {
-  color: var(--usc-red);
+  color: var(--white-1);
 }
 
 
@@ -2227,44 +2227,34 @@ textarea.form-input::-webkit-resizer {
 .research-authors,
 .research-venue {
   font-size: 0.85rem;
-  /* or try 13px or var(--fs-7) */
-  font-weight: var(--fw-300);
+  font-weight: var(--fw-400);
   color: var(--light-gray);
+  font-style: normal;
   line-height: 1.4;
-  font-style: italic;
-  margin-bottom: 0.3rem
-    /* ✅ this makes it italic */
-
+  margin-bottom: 0.3rem;
 }
 
 .research-video-preview {
   width: 320px;
-  height: auto;
+  height: 200px;
   border-radius: 8px;
   overflow: hidden;
   flex-shrink: 0;
   position: relative;
-  aspect-ratio: auto;
+  aspect-ratio: 16/10;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.18);
 }
 
-.research-video-preview video {
+.research-video-preview video,
+.research-video-preview img {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: contain;
   border-radius: 8px;
   display: block;
 }
 
-/* Specific styling for adaptive locomotion video (second research item) */
-.research-item:nth-child(2) .research-video-preview {
-  height: auto;
-  aspect-ratio: auto;
-}
-
-.research-item:nth-child(2) .research-video-preview video {
-  height: auto;
-  object-fit: contain;
-}
 
 rose {
   color: var(--usc-red);
@@ -2324,9 +2314,9 @@ rose {
 }
 
 .tag {
-  background-color: rgba(255, 204, 0, 0.5);
+  background-color: rgba(255, 204, 0, 0.1);
   border: none;
-  color: var(--usc-red);
+  color: var(--white-1);
   font-size: 0.75rem;
   padding: 2px 8px;
   border-radius: 6px;
@@ -2391,6 +2381,11 @@ rose {
   line-height: 1.6;
 }
 
+.about-intro-text strong {
+  font-weight: 700 !important;
+  color: var(--white-1) !important;
+}
+
 .about-intro-text p {
   margin-bottom: 2px;
 }
@@ -2451,7 +2446,7 @@ rose {
 }
 
 .news-item .text-bold {
-  color: var(--usc-red);
+  color: var(--white-1);
   font-weight: var(--fw-600);
 }
 
