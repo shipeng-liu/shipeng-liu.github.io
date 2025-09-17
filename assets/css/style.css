@@ -540,10 +540,6 @@ main {
   color: var(--usc-gold);
 }
 
-/* Sidebar contact icons/text in the top-right card should be yellow */
-
-.sidebar .contact-link { color: var(--usc-gold); }
-
 
 /*-----------------------------------*\
   #NAVBAR
