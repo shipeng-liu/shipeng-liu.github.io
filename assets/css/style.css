@@ -540,6 +540,10 @@ main {
   color: var(--usc-gold);
 }
 
+/* Sidebar contact icons/text in the top-right card should be yellow */
+
+.sidebar .contact-link { color: var(--usc-gold); }
+
 
 /*-----------------------------------*\
   #NAVBAR
@@ -2253,6 +2257,30 @@ textarea.form-input::-webkit-resizer {
   object-fit: contain;
   border-radius: 8px;
   display: block;
+}
+
+/* Mobile layout: stack research items as vertical cards */
+@media (max-width: 767px) {
+  .research-item {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .research-video-preview {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/10;
+  }
+
+  /* Make the bottom research content span full width on mobile */
+  .research-info { max-width: 100%; width: 100%; flex: 1 1 auto; }
+  .research-text { width: 100%; }
+
+  .research-content {
+    width: 100%;
+  }
 }
 
 
