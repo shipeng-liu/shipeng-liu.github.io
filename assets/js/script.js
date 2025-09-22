@@ -37,3 +37,41 @@ for (let i = 0; i < navigationLinks.length; i++) {
   });
 }
 
+// Open news images in a new tab
+document.addEventListener('click', function (e) {
+  const img = e.target.closest('.news-image img');
+  if (!img) return;
+  window.open(img.src, '_blank');
+});
+
+// Carousel logic for Additional Projects
+document.addEventListener('click', function (e) {
+  const prevBtn = e.target.closest('.media-carousel-btn.prev');
+  const nextBtn = e.target.closest('.media-carousel-btn.next');
+  const btn = prevBtn || nextBtn;
+  if (!btn) return;
+
+  const carousel = btn.closest('.media-carousel');
+  const track = carousel.querySelector('.media-carousel-track');
+  const slides = carousel.querySelectorAll('.media-carousel-slide');
+  const dots = carousel.querySelectorAll('.media-carousel-dot');
+  const total = slides.length;
+  let index = Number(carousel.dataset.index || 0);
+
+  // Pause any playing videos on current slide
+  const currentVideo = slides[index]?.querySelector('video');
+  if (currentVideo) currentVideo.pause();
+
+  if (nextBtn) index = (index + 1) % total;
+  else if (prevBtn) index = (index - 1 + total) % total;
+
+  carousel.dataset.index = index;
+  track.style.transform = `translateX(-${index * 100}%)`;
+
+  dots.forEach((d, i) => d.classList.toggle('active', i === index));
+
+  // Autoplay video on new slide if present
+  const newVideo = slides[index]?.querySelector('video');
+  if (newVideo) { try { newVideo.play(); } catch (_) {} }
+});
+

@@ -2502,6 +2502,37 @@ rose {
   transform: scale(1.02);
 }
 
+/* Generic media carousel (supports images and videos) */
+.media-carousel { position: relative; width: 100%; height: 300px; border-radius: 8px; overflow: hidden; background: #fff; border: 1px solid rgba(0,0,0,0.18); margin-bottom: 1rem; }
+.media-carousel-track { display: flex; width: 100%; height: 100%; transition: transform 260ms ease; }
+.media-carousel-slide { flex: 0 0 100%; display: flex; align-items: center; justify-content: center; background: #fff; }
+.media-carousel-slide img, .media-carousel-slide video { width: 100%; height: 100%; object-fit: contain; }
+.media-carousel-nav { position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; pointer-events: none; }
+.media-carousel-btn { pointer-events: auto; background: rgba(0,0,0,0.35); color: #fff; border: none; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; margin: 0 6px; cursor: pointer; }
+.media-carousel-dots { position: absolute; left: 0; right: 0; bottom: 6px; display: flex; justify-content: center; gap: 6px; }
+.media-carousel-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(0,0,0,0.25); }
+.media-carousel-dot.active { background: var(--usc-red); }
+
+@media (max-width: 767px) {
+  .media-carousel { width: 100%; height: 200px; border-left: none; border-right: none; border-radius: 0; }
+}
+/* Avoid hover-zoom on clickable news gallery to prevent perceived jump */
+.news-container .news-image img:hover { transform: none; }
+
+/* Horizontal image row for News gallery images */
+.news-container .news-image {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  width: auto;
+}
+
+.news-container .news-image img {
+  height: 72px;
+  width: auto;
+}
+
 @media (max-width: 767px) {
   .news-content {
     flex-direction: column;
