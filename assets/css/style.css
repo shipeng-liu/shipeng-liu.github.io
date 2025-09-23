@@ -2503,7 +2503,7 @@ rose {
 }
 
 /* Generic media carousel (supports images and videos) */
-.media-carousel { position: relative; width: 100%; height: 300px; border-radius: 8px; overflow: hidden; background: #fff; border: 1px solid rgba(0,0,0,0.18); margin-bottom: 1rem; }
+.media-carousel { position: relative; width: 100%; height: 450px; border-radius: 8px; overflow: hidden; background: #fff; border: 1px solid rgba(0,0,0,0.18); margin-bottom: 1rem; }
 .media-carousel-track { display: flex; width: 100%; height: 100%; transition: transform 260ms ease; }
 .media-carousel-slide { flex: 0 0 100%; display: flex; align-items: center; justify-content: center; background: #fff; }
 .media-carousel-slide img, .media-carousel-slide video { width: 100%; height: 100%; object-fit: contain; }
@@ -2514,8 +2514,49 @@ rose {
 .media-carousel-dot.active { background: var(--usc-red); }
 
 @media (max-width: 767px) {
-  .media-carousel { width: 100%; height: 200px; border-left: none; border-right: none; border-radius: 0; }
+  .media-carousel { width: 100%; height: 300px; border-left: none; border-right: none; border-radius: 0; }
 }
+
+.media-carousel-caption {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: var(--light-gray);
+  text-align: center;
+}
+
+/* Diamond bullet before journal lines (scoped to Additional Projects) */
+article.robots .journal-name::before {
+  content: "◆ ";
+  color: var(--usc-red);
+}
+
+/* Ensure full-width content on Additional Projects page */
+article.robots .research-list { width: 100%; margin-bottom: 0.75rem !important; padding-bottom: 0; }
+article.robots .research-item { flex-direction: column; align-items: stretch; }
+article.robots .research-info.research-text { width: 100%; max-width: 100%; }
+
+/* Additional Projects: use dark text and tighter spacing */
+article.robots .research-title,
+article.robots .research-title rose,
+article.robots .research-title b,
+article.robots .research-title strong,
+article.robots .journal-name,
+article.robots .research-authors,
+article.robots .research-tags .tag {
+  color: var(--white-1) !important; /* dark text */
+}
+
+article.robots .research-item {
+  margin-bottom: 0.75rem; /* tighter interval between projects */
+  padding-bottom: 0.75rem;
+}
+
+article.robots header + section.research-list { margin-top: 0.25rem; }
+article.robots header { margin-bottom: 0.25rem; }
+
+/* Remove bottom gap after the last project section */
+article.robots .research-list:last-of-type { margin-bottom: 0 !important; }
+article.robots .research-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
 /* Avoid hover-zoom on clickable news gallery to prevent perceived jump */
 .news-container .news-image img:hover { transform: none; }
 
