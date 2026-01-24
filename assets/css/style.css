@@ -378,7 +378,7 @@ main {
 .sidebar {
   margin-bottom: 15px;
   max-height: 112px;
-  overflow: hidden;
+  overflow: visible;
   transition: var(--transition-2);
 }
 
@@ -595,6 +595,17 @@ main {
   margin-bottom: 15px;
 }
 
+/* More compact header spacing for research sections in About page */
+article.about header h3.article-title {
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+  font-size: var(--fs-4);
+}
+
+article.about header:first-of-type h3.article-title {
+  margin-top: 0;
+}
+
 .about-text {
   color: var(--light-gray);
   font-size: var(--fs-6);
@@ -604,6 +615,17 @@ main {
 
 .about-text p {
   margin-bottom: 15px;
+}
+
+/* More compact spacing for About me section */
+article.about .about-text p {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+/* Reduce spacing between About me section and Research section */
+article.about .about-text {
+  margin-bottom: 0.5rem;
 }
 
 
@@ -1493,12 +1515,13 @@ textarea.form-input::-webkit-resizer {
    */
 
   .sidebar {
-    max-height: 180px;
+    max-height: none;
     margin-bottom: 30px;
+    overflow: visible;
   }
 
   .sidebar.active {
-    max-height: 584px;
+    max-height: none;
   }
 
   .sidebar-info {
@@ -2065,13 +2088,13 @@ textarea.form-input::-webkit-resizer {
     margin-inline: auto;
     display: flex;
     justify-content: center;
-    align-items: stretch;
+    align-items: flex-start;
     gap: 10px;
   }
 
   .main-content {
-    min-width: 75%;
-    width: 75%;
+    min-width: 65%;
+    width: 65%;
     margin: 0;
   }
 
@@ -2084,11 +2107,15 @@ textarea.form-input::-webkit-resizer {
   .sidebar {
     position: sticky;
     top: 60px;
-    max-height: max-content;
-    height: 100%;
+    max-height: none;
+    height: auto;
+    min-height: fit-content;
     margin-bottom: 0;
     padding-top: 60px;
     z-index: 1;
+    overflow: visible;
+    width: 35%;
+    min-width: 35%;
   }
 
   .sidebar-info {
@@ -2195,6 +2222,16 @@ textarea.form-input::-webkit-resizer {
   margin-top: 20px;
 }
 
+/* More compact spacing for research sections in About page */
+article.about .research-list {
+  margin-top: 0.5rem;
+  gap: 0;
+}
+
+article.about header + .research-list {
+  margin-top: 0.5rem;
+}
+
 .research-item {
   display: flex;
   flex-wrap: nowrap;
@@ -2210,6 +2247,12 @@ textarea.form-input::-webkit-resizer {
   max-width: calc(100% - 340px);
 }
 
+/* Research page - full width info */
+article.research .research-info {
+  max-width: 100%;
+  width: 100%;
+}
+
 
 .research-text {
   color: black;
@@ -2220,18 +2263,23 @@ textarea.form-input::-webkit-resizer {
   /* this is okay, but not enough without .research-info */
 }
 
+article.research .research-text {
+  display: inline-block;
+  width: 100%;
+}
+
 .research {
   color: var(--white-1);
-  font-size: 0.85rem;
+  font-size: var(--fs-6);
 }
 
 .research-authors,
 .research-venue {
-  font-size: 0.85rem;
-  font-weight: var(--fw-400);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-300);
   color: black;
   font-style: normal;
-  line-height: 1.4;
+  line-height: 1.6;
   margin-bottom: 0.3rem;
 }
 
@@ -2294,37 +2342,76 @@ rose {
   flex-wrap: wrap;
 }
 
+/* Override for research page - inline display */
+article.research .research-links {
+  display: inline !important;
+  gap: 0;
+}
+
 
 .research-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: black;
-  font-weight: 500;
-  text-decoration: none;
-  font-size: 0.85rem;
-  /* 👈 Add this line */
+  color: #0066cc;
+  font-weight: var(--fw-400);
+  text-decoration: underline;
+  font-size: var(--fs-6);
   transition: color 0.2s ease;
+}
+
+/* Override for research page - make truly inline */
+article.research .research-link {
+  display: inline !important;
+  align-items: baseline;
+  gap: 0;
+  font-size: var(--fs-6);
+  font-weight: var(--fw-400);
+  color: #0066cc;
+  text-decoration: underline;
 }
 
 .research-link:hover {
   color: var(--usc-red);
-  /* or --dusty-rose */
+  text-decoration: underline;
+}
 
+/* Hide any sci-hub markers or injected content */
+.research-link[href*="sci-hub"],
+.research-link[href*="scihub"],
+.research-link::after[content*="sci-hub"],
+.research-link::before[content*="sci-hub"],
+a[href*="sci-hub"],
+a[href*="scihub"],
+.research-links a[href*="sci-hub"],
+.research-links a[href*="scihub"] {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Hide any elements with sci-hub in their content or attributes */
+*[href*="sci-hub"],
+*[href*="scihub"],
+*[data-sci-hub],
+*[class*="sci-hub"],
+*[class*="scihub"],
+*[id*="sci-hub"],
+*[id*="scihub"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
 }
 
 .research-title {
-  font-size: 0.9rem;
-  font-weight: 600;
-  line-height: 1.2;
-  /* 👈 tighter spacing */
+  font-size: var(--fs-6);
+  font-weight: var(--fw-300);
+  line-height: 1.6;
   margin: 0 0 4px;
-  /* optional: adjust margin too */
   color: black;
 }
 
 .journal-name {
-  font-size: 0.75rem;
+  font-size: var(--fs-6);
   color: black;
   font-style: normal;
   margin: 0 0 6px;
@@ -2694,20 +2781,20 @@ article.robots .research-item:last-child { margin-bottom: 0; padding-bottom: 0; 
   display: flex;
   align-items: flex-start;
   gap: 1rem;
-  padding: 1rem;
-  background: white;
-  border: 1px solid rgba(153, 0, 0, 0.2);
-  border-radius: 12px;
-  transition: all 0.3s ease;
-  margin-bottom: 0;
-  padding-bottom: 1rem;
-  border-bottom: none;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  transition: none;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .news-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(153, 0, 0, 0.15);
-  border-color: var(--usc-red);
+  transform: none;
+  box-shadow: none;
+  border-color: rgba(0, 0, 0, 0.08);
 }
 
 .news-icon {
@@ -3034,4 +3121,147 @@ article.robots .research-item:last-child { margin-bottom: 0; padding-bottom: 0; 
     width: 100%;
     justify-content: center;
   }
+}
+
+/* Full width for research page */
+@media (min-width: 768px) {
+  .main-content {
+    width: 65%;
+  }
+  
+  /* Override for research page - use JavaScript to add class or use inline style */
+  .main-content.research-full-width {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+  }
+}
+
+article.research .main-content {
+  margin: auto;
+  padding: 0 2rem;
+}
+
+/* Research items full width */
+article.research .research-item,
+article.about .research-item {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+article.about .research-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+article.research .research-info,
+article.about .research-info {
+  max-width: 100%;
+  width: 100%;
+}
+
+/* Inline layout for title, journal, authors, and links - allow wrapping */
+article.research .research-info,
+article.about .research-info {
+  line-height: 1.8;
+  display: block;
+  width: 100%;
+}
+
+article.research .research-info > p,
+article.research .research-info > div.research-links,
+article.about .research-info > p,
+article.about .research-info > div.research-links {
+  display: inline;
+}
+
+article.research .research-info > div.extra-info,
+article.about .research-info > div.extra-info {
+  display: block;
+}
+
+article.research .research-info p,
+article.about .research-info p {
+  display: inline;
+  margin-right: 0.5rem;
+}
+
+article.research .research-info div.research-links,
+article.about .research-info div.research-links {
+  display: inline !important;
+}
+
+article.research .research-title,
+article.about .research-title {
+  font-weight: var(--fw-300);
+  font-size: var(--fs-6);
+}
+
+article.research .journal-name,
+article.about .journal-name {
+  font-style: normal;
+  font-size: var(--fs-6);
+}
+
+article.research .research-title::after,
+article.about .research-title::after {
+  content: ". ";
+  margin-right: 0.1rem;
+}
+
+article.research .journal-name::after,
+article.about .journal-name::after {
+  content: ". ";
+  margin-right: 0.1rem;
+}
+
+article.research .research-authors::after,
+article.about .research-authors::after {
+  content: ". ";
+  margin-right: 0.1rem;
+}
+
+article.research .research-links,
+article.about .research-links {
+  display: inline !important;
+  margin-left: 0.5rem;
+  white-space: normal;
+}
+
+article.research .research-link,
+article.about .research-link {
+  display: inline !important;
+  margin-right: 0.5rem;
+  margin-left: 0.3rem;
+  color: #0066cc;
+  text-decoration: underline;
+  font-weight: var(--fw-400);
+}
+
+article.research .research-link:first-child,
+article.about .research-link:first-child {
+  margin-left: 0;
+}
+
+article.research .research-link ion-icon,
+article.about .research-link ion-icon {
+  display: inline !important;
+  vertical-align: middle;
+  margin-right: 2px;
+  font-size: 0.9em;
+}
+
+/* Override default research-link styles for research page */
+article.research .research-link,
+article.about .research-link {
+  display: inline !important;
+  align-items: baseline;
+  font-size: var(--fs-6);
+  font-weight: var(--fw-400);
+  color: #0066cc;
+  text-decoration: underline;
 }
