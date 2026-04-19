@@ -3324,3 +3324,11 @@ article.about .research-link {
   color: #0066cc;
   text-decoration: underline;
 }
+
+/*-----------------------------------*\
+  #PROJECTS PAGE HIDDEN (temporary)
+  Remove this entire block + uncomment Projects nav in index.html to restore.
+\*-----------------------------------*/
+article.robots[data-page="projects"] {
+  display: none !important;
+}
