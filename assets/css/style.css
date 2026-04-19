@@ -386,6 +386,59 @@ main {
   max-height: 405px;
 }
 
+/* Mobile: keep news inside sidebar; wrap long lines; avoid overlap with main content */
+@media (max-width: 767px) {
+  .sidebar {
+    overflow: hidden;
+  }
+
+  .sidebar.active {
+    max-height: none;
+    overflow-x: hidden;
+    overflow-y: visible;
+  }
+
+  .profile-box {
+    width: 72px;
+    height: 72px;
+    flex-shrink: 0;
+  }
+
+  .sidebar-news {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .news-container {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .news-header {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    max-width: 100%;
+  }
+
+  .info-content {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .info-content .title {
+    max-width: 100%;
+    width: auto;
+    white-space: normal;
+    box-sizing: border-box;
+  }
+
+  .contact-list {
+    flex-wrap: wrap;
+    max-width: 100%;
+    row-gap: 8px;
+  }
+}
+
 .sidebar-info {
   position: relative;
   display: flex;
@@ -535,6 +588,12 @@ main {
   font-size: 24px;
   color: var(--usc-red);
   transition: color var(--transition-1);
+}
+
+/* No native tooltips from ion-icon shadow DOM; hover targets the link only */
+.contact-link .contact-icon,
+.contact-link ion-icon.contact-icon {
+  pointer-events: none;
 }
 
 .contact-link:hover .contact-icon {
