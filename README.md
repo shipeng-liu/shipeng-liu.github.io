@@ -22,8 +22,10 @@ The website highlights research in:
 
 ## 📁 Project Structure
 
+**Live site:** [https://shipeng-liu.github.io/](https://shipeng-liu.github.io/)
+
 ```
-henry_liu.github.io/
+shipeng-liu.github.io/
 ├── index.html                 # Main website homepage
 ├── assets/                    # Static assets
 │   ├── css/                   # Stylesheets
