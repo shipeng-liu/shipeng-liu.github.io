@@ -58,8 +58,8 @@ shipeng-liu.github.io/
 - **Email**: shipengl@usc.edu
 - **Google Scholar**: [Profile](https://scholar.google.com/citations?user=2HSkONgAAAAJ&hl=en)
 - **Twitter**: [@ShipengLiu5](https://x.com/ShipengLiu5)
-- **LinkedIn**: [Profile](https://www.linkedin.com/in/shipeng-liu-5b956423b/)
-- **GitHub**: [henryliuliuliu](https://github.com/henryliuliuliu)
+- **LinkedIn**: [Profile](https://www.linkedin.com/in/shipeng-liu/)
+- **GitHub**: [shipeng-liu](https://github.com/shipeng-liu)
 
 ## 🎓 Academic Background
 
